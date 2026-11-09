@@ -1,0 +1,34 @@
+---
+import { researchPhotoCatalan } from '@/data/localized/research';
+// Native crop dimensions, not reconstructed full photographs or enlarged originals.
+const photos = {
+  'hero-photo-clean-crop': { width: 343, height: 328, alt: 'Un grupo reunido bajo un porche de madera frente al paisaje.' },
+  cohousing: { width: 164, height: 145, alt: 'Personas compartiendo una mesa en un patio entre viviendas.' },
+  coliving: { width: 165, height: 145, alt: 'Una mesa compartida en un espacio doméstico abierto y luminoso.' },
+  'intergenerational-community': { width: 165, height: 145, alt: 'Personas de distintas edades conversando en un jardín residencial.' },
+  'other-living-models': { width: 165, height: 145, alt: 'Un espacio común con mesas, plantas y grandes ventanas.' },
+  'research-older-man-landscape': { width: 210, height: 105, alt: 'Un hombre de pelo blanco contempla el paisaje desde una terraza.' },
+  'research-young-man-city': { width: 213, height: 105, alt: 'Un joven observa la ciudad desde un mirador.' },
+  'research-house': { width: 208, height: 105, alt: 'Una casa de piedra rodeada de vegetación.' },
+  'meeting-banner': { width: 743, height: 90, alt: 'Una conversación alrededor de una mesa con cuadernos y documentos.' },
+  'outdoor-community': { width: 347, height: 177, alt: 'Un grupo conversa en círculo al aire libre junto a una casa.' },
+  'sunset-clean-detail-crop': { width: 280, height: 199, alt: 'El sol se pone tras las montañas y los árboles.' },
+};
+
+interface Props {
+  name: keyof typeof photos;
+  eager?: boolean;
+  class?: string;
+}
+const { name, eager = false, class: className } = Astro.props;
+const photo = photos[name];
+---
+<img
+  src={`/living-research/${name}.png`}
+  {...photo}
+  alt={Astro.currentLocale === 'ca' ? researchPhotoCatalan[name] : photo.alt}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={eager ? 'high' : undefined}
+  class:list={['block h-auto w-full', className]}
+/>

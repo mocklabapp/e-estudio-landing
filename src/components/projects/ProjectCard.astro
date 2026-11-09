@@ -1,0 +1,30 @@
+---
+import type { PublicProject } from '@/lib/projects';
+import { selectPilotProjectContent } from '@/lib/pilot-project-content';
+import { getProjectCategoryLabel } from '@/lib/project-categories';
+import { defaultLocale } from '@/i18n/locales';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { projectsCatalan } from '@/data/localized/projects';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, projectsCatalan);
+import MediaPlaceholder from '@/components/ui/MediaPlaceholder.astro';
+interface Props { project: PublicProject }
+const { project } = Astro.props;
+const text = selectPilotProjectContent(project, locale);
+const title = text.title ?? t('Proyecto sin título en español');
+const cover = project.images?.[0];
+const category = getProjectCategoryLabel(project.category, Astro.currentLocale ?? defaultLocale);
+---
+<article class="min-w-0">
+  <a href={`${pagePath('projects', locale)}${project.id}/`} class="group block" aria-label={`${t('Ver proyecto')}: ${title}`}>
+    {cover ? <img src={cover.url} alt={`${title} — ${t('imagen')} 1`} loading="lazy" decoding="async"
+      class="aspect-3/2 w-full bg-surface object-cover" /> : <MediaPlaceholder label={title} />}
+    <h2 class="mt-4 text-xl font-light break-words group-hover:text-brand">{title}</h2>
+  </a>
+  {(category || project.year) && <dl class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
+    {category && <div class="min-w-0 break-words"><dt class="sr-only">{t('Categoría')}</dt><dd>{category}</dd></div>}
+    {project.year && <div class="min-w-0 break-words"><dt class="sr-only">{t('Año')}</dt><dd>{project.year}</dd></div>}
+  </dl>}
+  {text.source === 'missing' && <p class="mt-2 text-sm text-muted">{t('Contenido en español pendiente.')}</p>}
+</article>

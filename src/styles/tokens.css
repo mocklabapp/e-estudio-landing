@@ -1,0 +1,17 @@
+/* Approved e estudio palette. Fonts are provisional system approximations. */
+@theme static {
+  --color-*: initial;
+  --color-canvas: #fff;
+  --color-ink: #1a1a1a;
+  --color-surface: #f6f4ef;
+  --color-stone: #a89f92;
+  --color-sand: #d9d3c8;
+  --color-muted: #67635e;
+  --color-line: #dedbd6;
+  --color-brand: #746657;
+  --color-on-brand: #fff;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Bodoni MT', Didot, 'Times New Roman', serif;
+  --text-display: clamp(2.75rem, 6vw, 5.5rem);
+  --text-editorial: clamp(2.25rem, 4.5vw, 4.5rem);
+}

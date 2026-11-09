@@ -1,0 +1,41 @@
+---
+import { localize } from '@/data/localized/locale';
+import { studioCatalan } from '@/data/localized/studio';
+const t = localize(Astro.currentLocale, studioCatalan);
+import { collaborators } from '@/data/editorial';
+import { logos } from './assets';
+---
+
+<section class="collaborators" aria-labelledby="studio-collaborators">
+  <h2 id="studio-collaborators" class="eyebrow">{t('Clientes y colaboradores')}</h2>
+  <ul>
+    {collaborators.map((name) => (
+      <li>
+        <img {...logos[name]} alt={name} loading="lazy" decoding="async" />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .collaborators { padding: 2rem 6.45%; }
+  h2 { margin-bottom: 1.5rem; }
+  ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  li { display: flex; align-items: center; justify-content: center; min-width: 0; }
+  img { max-width: 100%; height: auto; }
+
+  @media (min-width: 48rem) {
+    .collaborators { min-height: 8.9375rem; padding-block: 1.5rem 2rem; }
+    ul { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+    li { position: relative; min-height: 3rem; }
+    li + li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 2rem;
+      border-left: 1px solid var(--color-line);
+    }
+    li:first-child { justify-content: flex-start; }
+    li:last-child { justify-content: flex-end; }
+  }
+</style>

@@ -1,0 +1,17 @@
+export const shellCatalan = {
+  'Saltar al contenido': 'Salta al contingut',
+  'e estudio — Inicio': 'e estudio — Inici',
+  'Navegación principal': 'Navegació principal',
+  'Navegación móvil': 'Navegació mòbil',
+  'Navegación del pie': 'Navegació del peu',
+  'Vista previa de cliente.': 'Vista prèvia de client.',
+  'Tipografía y algunas imágenes provisionales.': 'Tipografia i algunes imatges provisionals.',
+  'Los formularios no envían información.': 'Els formularis no envien informació.',
+  'Arquitectura residencial': 'Arquitectura residencial',
+  'Inmobiliaria y servicios': 'Immobiliària i serveis',
+  'Imagen pendiente': 'Imatge pendent',
+  'Contacto': 'Contacte',
+  'Habitar empieza': 'Habitar comença',
+  'con una conversación.': 'amb una conversa.',
+  'Empezamos a hablar': 'Comencem a parlar',
+};

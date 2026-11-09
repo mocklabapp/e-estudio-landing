@@ -1,0 +1,17 @@
+---
+import BrandMark from '@/components/ui/BrandMark.astro';
+import { navigationFor } from '@/data/navigation';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { shellCatalan } from '@/data/localized/shell';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const navigation = navigationFor(locale);
+const t = localize(locale, shellCatalan);
+---
+<footer class="border-t border-line bg-surface py-12">
+  <div class="page-width grid gap-10 md:grid-cols-3">
+    <div><a href={pagePath('home', locale)} aria-label={t('e estudio — Inicio')}><BrandMark compact /></a><p class="mt-8 text-xs text-muted">© e estudio {new Date().getFullYear()}</p></div>
+    <nav aria-label={t('Navegación del pie')}><ul class="space-y-2 text-sm">{navigation.map(({ href, label }) => <li><a href={href}>{label}</a></li>)}</ul></nav>
+    <div class="text-sm text-muted"><p>Cardedeu, Barcelona</p><p class="mt-6">{t('Vista previa de cliente.')}</p><p class="mt-2 text-xs">{t('Tipografía y algunas imágenes provisionales.')}<br />{t('Los formularios no envían información.')}</p></div>
+  </div>
+</footer>

@@ -1,0 +1,30 @@
+{
+  "name": "e-estudio-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "pnpm@12.16.1",
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "check:tooling": "tsc --ignoreConfig --noEmit --strict --allowJs --checkJs --module nodenext --moduleResolution nodenext --target es2022 --types node --allowImportingTsExtensions --skipLibCheck tests/i18n.test.mjs tests/helpers/build-fixture.mjs tests/repository-identity.test.mjs tests/toolchain.test.mjs",
+    "test": "astro build && node --test tests/*.test.mjs",
+    "validate": "astro check && astro build && node --test tests/*.test.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.17",
+    "astro": "^7.4.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}

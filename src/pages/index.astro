@@ -1,0 +1,21 @@
+---
+import PageRenderer from '@/components/shared/PageRenderer.astro';
+import { getProjects } from '@/lib/projects';
+import { latestHomeProjects } from '@/lib/home-projects';
+
+import { localizedPage, loadPortfolio, type PortfolioResult } from '@/lib/localized-routes';
+import type { ClientLocale } from '@/data/localized/locale';
+
+interface Props { locale?: ClientLocale; result?: PortfolioResult }
+export const prerender = false;
+const { locale = 'es' } = Astro.props;
+const page = localizedPage('home', locale);
+if (!page) return new Response(null, { status: 404 });
+for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
+  Astro.response.headers.set(name, 'no-store');
+}
+const { projects: allProjects, unavailable } = Astro.props.result ?? await loadPortfolio(getProjects);
+const projects = latestHomeProjects(allProjects);
+if (unavailable) Astro.response.status = 503;
+---
+<PageRenderer page={page} projects={projects} unavailable={unavailable} />

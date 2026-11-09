@@ -1,0 +1,19 @@
+---
+import { equivalents, locales, type PublishedPage } from '@/i18n/pages';
+import { ui } from '@/i18n/ui';
+interface Props { page: PublishedPage; compact?: boolean }
+const { page, compact = false } = Astro.props;
+const links = equivalents(page);
+const labels = ui[page.locale];
+---
+{links.length > 1 && (
+  <nav aria-label={labels.navigation}>
+    <span class:list={{ 'sr-only': compact }}>{labels.languageSwitcher}</span>
+    <ul class:list={{ 'flex gap-4 text-sm': compact }}>
+      {links.map(({ locale, path }) => (
+        <li><a href={path} lang={locales[locale].lang} hreflang={locales[locale].lang}
+          aria-current={locale === page.locale ? 'page' : undefined}>{compact ? locale.toUpperCase() : locales[locale].label}</a></li>
+      ))}
+    </ul>
+  </nav>
+)}

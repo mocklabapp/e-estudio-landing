@@ -1,0 +1,72 @@
+---
+import ArrowLink from '@/components/ui/ArrowLink.astro';
+import BrandMark from '@/components/ui/BrandMark.astro';
+import ContactBand from '@/components/sections/ContactBand.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { servicesCatalan } from '@/data/localized/services';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, servicesCatalan);
+const contact = pagePath('contact', locale);
+---
+
+<section class="page-width py-16 md:py-24">
+  <h1 class="font-serif text-display font-light leading-tight">{t('Servicios')}</h1>
+</section>
+
+<section class="page-width pb-24" aria-label={t('Servicios de arquitectura')}>
+  <div class="grid gap-8 md:grid-cols-2">
+    <section class="flex flex-col" aria-labelledby="service-inhabit">
+      <img
+        src="/services/habitar.png"
+        alt={t('Comedor luminoso con mesa de madera y ventanales abiertos al jardín.')}
+        width="452"
+        height="388"
+        class="service-image"
+        decoding="async"
+      />
+      <h2 id="service-inhabit" class="mt-10 font-serif text-editorial font-light">{t('habitar')}</h2>
+      <p class="mt-8 max-w-sm text-xl">{t('Para quienes quieren construir o transformar su hogar.')}</p>
+      <ul class="mt-10 divide-y divide-line border-y border-line text-sm">
+        <li class="py-4">{t('Obra nueva')}</li>
+        <li class="py-4">{t('Rehabilitación')}</li>
+        <li class="py-4">{t('Ampliaciones y reformas')}</li>
+      </ul>
+      <div class="mt-auto pt-12"><ArrowLink href={contact} label={t('Hablemos de tu hogar')} /></div>
+    </section>
+    <section class="flex flex-col" aria-labelledby="service-develop">
+      <img
+        src="/services/promover.png"
+        alt={t('Edificio residencial con balcones y un jardín arbolado junto al acceso.')}
+        width="453"
+        height="388"
+        class="service-image"
+        decoding="async"
+      />
+      <h2 id="service-develop" class="mt-10 font-serif text-editorial font-light">{t('promover')}</h2>
+      <p class="mt-8 max-w-sm text-xl">{t('Para quienes quieren desarrollar proyectos residenciales.')}</p>
+      <div class="mt-auto pt-12"><ArrowLink href={contact} label={t('Hablemos de tu proyecto')} /></div>
+    </section>
+  </div>
+</section>
+
+<section class="page-width section-space border-t border-line" aria-labelledby="services-living">
+  <div class="mx-auto max-w-3xl text-center">
+    <BrandMark variant="living" />
+    <h2 id="services-living" class="section-heading mt-12 font-serif">{t('¿Buscas una vivienda terminada?')}</h2>
+    <p class="mt-8 text-lg">{t('Descubre e living, nuestra propuesta inmobiliaria.')}</p>
+    <div class="mt-10"><ArrowLink href={contact} label={t('Preguntar por e living')} /></div>
+  </div>
+</section>
+
+<ContactBand title={t('Vivir es una elección.')} accent="" />
+
+<style>
+  .service-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 452 / 389;
+    object-fit: cover;
+  }
+</style>

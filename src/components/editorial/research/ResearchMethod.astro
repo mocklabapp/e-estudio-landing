@@ -1,0 +1,44 @@
+---
+import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
+import { researchMethod } from '@/data/editorial';
+import { localize } from '@/data/localized/locale';
+import { researchCatalan } from '@/data/localized/research';
+const t = localize(Astro.currentLocale, researchCatalan);
+---
+
+<ResearchPhoto name="meeting-banner" />
+
+<section class="page-width section-space" aria-labelledby="research-method">
+  <div class="grid gap-12 md:grid-cols-2 md:gap-20">
+    <div>
+      <h2 id="research-method" class="section-heading max-w-xl font-serif">
+        {t('De la conversación a la realidad.')}
+      </h2>
+      <p class="mt-8 max-w-lg text-lg leading-relaxed text-muted">
+        {t('Cada investigación nace de una pregunta abierta y se construye en común.')}
+      </p>
+    </div>
+    <ol>
+      {researchMethod.map((step, index) => (
+        <li class="flex items-baseline gap-6 border-t border-line py-5 last:border-b">
+          <span class="eyebrow shrink-0 text-muted" aria-hidden="true">0{index + 1}</span>
+          <h3 class="font-serif text-3xl font-light">{t(step)}</h3>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="bg-surface section-space" aria-labelledby="research-community">
+  <div class="page-width grid items-center gap-10 md:grid-cols-2 md:gap-20">
+    <ResearchPhoto name="outdoor-community" />
+    <div>
+      <h2 id="research-community" class="section-heading font-serif">
+        {t('Arquitectura, personas y conocimiento.')}
+      </h2>
+      <p class="mt-8 max-w-lg text-lg leading-relaxed text-muted">
+        {t('La conversación genera conocimiento, y el conocimiento nos acerca a respuestas arquitectónicas que pueden hacerse realidad.')}
+      </p>
+    </div>
+  </div>
+</section>

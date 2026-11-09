@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/shared/SiteHeader.astro';
+import SiteFooter from '@/components/shared/SiteFooter.astro';
+import ProjectDetail from '@/components/projects/ProjectDetail.astro';
+import { getProjects } from '@/lib/projects';
+import { selectPilotProjectContent } from '@/lib/pilot-project-content';
+
+import { localizedPage, pagePath, loadPortfolio, type PortfolioResult } from '@/lib/localized-routes';
+import { localize, type ClientLocale } from '@/data/localized/locale';
+import { projectsCatalan } from '@/data/localized/projects';
+
+interface Props { locale?: ClientLocale; result?: PortfolioResult }
+export const prerender = false;
+const { locale = 'es' } = Astro.props;
+const page = localizedPage('projects', locale, Astro.params.id);
+if (!page) return new Response(null, { status: 404 });
+const t = localize(locale, projectsCatalan);
+for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
+  Astro.response.headers.set(name, 'no-store');
+}
+const id = Astro.params.id ?? '';
+const { projects, unavailable } = Astro.props.result ?? await loadPortfolio(getProjects, id);
+const project = projects.find(entry => entry.id === id);
+if (!project) Astro.response.status = unavailable ? 503 : 404;
+const text = project ? selectPilotProjectContent(project, locale) : undefined;
+const title = unavailable ? t('Proyectos no disponibles') :
+  project ? text?.title ?? t('Proyecto sin título en español') : t('Proyecto no encontrado');
+---
+<BaseLayout page={page} title={title} description={text?.description ?? t('Arquitectura residencial de e estudio.')}>
+  <SiteHeader page={page} />
+  <main id="main-content">
+    {project ? <ProjectDetail project={project} /> :
+      <section class="page-width section-space">
+        <h1 class="section-heading mb-8">{title}</h1>
+        <p class="text-muted">{t(unavailable ? 'No podemos mostrar los proyectos en este momento. Inténtalo de nuevo más tarde.' : 'El proyecto que buscas no está disponible.')}</p>
+        <a class="mt-8 inline-block underline underline-offset-8" href={pagePath('projects', locale)}>{t('Volver a proyectos')}</a>
+      </section>}
+  </main>
+  <SiteFooter />
+</BaseLayout>

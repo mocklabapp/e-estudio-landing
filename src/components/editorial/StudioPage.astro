@@ -1,0 +1,109 @@
+---
+import StudioTeam from '@/components/editorial/StudioTeam.astro';
+import StudioCollaborators from '@/components/editorial/studio/StudioCollaborators.astro';
+import { philosophy } from '@/data/editorial';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { studioCatalan } from '@/data/localized/studio';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, studioCatalan);
+---
+
+<section class="studio-hero text-center">
+  <p class="eyebrow">{t('El estudio')}</p>
+  <div class="hero-rule" aria-hidden="true"></div>
+  <h1 class="font-sans text-3xl font-light sm:text-4xl lg:text-5xl">
+    <span>{t('Creamos espacios,')}</span>
+    <span>{t('investigamos nuevas')}</span>
+    <span class="text-brand">{t('formas de habitar.')}</span>
+  </h1>
+</section>
+
+<section class="philosophy bg-surface" aria-labelledby="studio-philosophy">
+  <h2 id="studio-philosophy" class="eyebrow">{t('Nuestra filosofía')}</h2>
+  <div class="principles">
+    {philosophy.map(({ title, description }) => (
+      <div class="principle">
+        <h3 class="text-3xl font-light">{t(title)}</h3>
+        <p class="text-sm text-muted">{t(description)}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="founders" aria-labelledby="studio-founders">
+  <div class="founders-copy">
+    <p class="eyebrow">{t('Nosotras')}</p>
+    <h2 id="studio-founders" class="text-3xl font-light">{t('Dos trayectorias complementarias.')}</h2>
+    <p class="founders-description text-xl font-light">{t('Una misma manera de entender la arquitectura.')}</p>
+  </div>
+  <img src="/studio/photos/founders-working.png" width="584" height="268"
+    alt={t('Las fundadoras trabajando juntas en el estudio')} loading="eager" decoding="async" />
+</section>
+
+<StudioTeam />
+<StudioCollaborators />
+
+<section class="studio-space" aria-labelledby="studio-space">
+  <div class="space-copy">
+    <p class="eyebrow">{t('Nuestro estudio')}</p>
+    <h2 id="studio-space" class="text-3xl font-light">
+      {t('Un lugar abierto')}<br />{t('a la')} <span class="text-brand">{t('conversación.')}</span>
+    </h2>
+  </div>
+  <img src="/studio/photos/studio-meeting-room.png" width="620" height="212"
+    alt={t('Mesa de reuniones junto a la biblioteca del estudio')} loading="lazy" decoding="async" />
+</section>
+
+<section class="studio-contact" aria-labelledby="studio-contact">
+  <div class="contact-rule" aria-hidden="true"></div>
+  <h2 id="studio-contact" class="font-light">
+    <a href={pagePath('contact', locale)} class="contact-link text-sm">{t('Contacto')}</a>
+  </h2>
+</section>
+
+<style>
+  .studio-hero { padding: 3rem 1.5rem; }
+  .hero-rule { width: 2rem; margin: .75rem auto 1rem; border-top: 1px solid var(--color-line); }
+  h1 { line-height: 1.1; }
+  h1 span { display: block; }
+  .philosophy { padding-block: 2rem; }
+  .philosophy > h2 { margin: 0 6.45% 1.5rem; }
+  .principles { display: grid; gap: 2rem; }
+  .principle { padding-inline: 6.45%; }
+  .principle p { margin-top: .5rem; }
+  .founders, .studio-space { display: grid; }
+  .founders-copy, .space-copy { padding: 2rem 6.45%; }
+  .founders h2, .space-copy h2 { margin-top: 1.5rem; line-height: 1.15; }
+  .founders-description { margin-top: 1rem; max-width: 18rem; line-height: 1.4; }
+  .founders img, .studio-space img { display: block; width: 100%; height: auto; }
+  .studio-contact { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 6.45%; }
+  .contact-rule { flex: 1; border-top: 1px solid var(--color-line); }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 9.25rem;
+    padding: .5rem 1.5rem;
+    border: 1px solid var(--color-line);
+  }
+  .contact-link:hover { background: var(--color-surface); }
+
+  @media (min-width: 48rem) {
+    /* Reference crop geometry, without overriding the shared header or footer. */
+    .studio-hero { min-height: 15rem; padding-block: 1rem; }
+    .philosophy { min-height: 13.125rem; }
+    .principles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .principle { padding-inline: 3rem; }
+    .principle + .principle { border-left: 1px solid var(--color-line); }
+    .principle:first-child { padding-left: 19.35%; }
+    .principle p { max-width: 15rem; }
+    .founders { grid-template-columns: 42.96875% minmax(0, 1fr); padding-top: .75rem; }
+    .founders-copy { align-self: center; padding: 1rem 2rem 1rem 15%; }
+    .founders h2 { max-width: 21rem; }
+    .studio-space { grid-template-columns: 39.453125% minmax(0, 1fr); }
+    .space-copy { align-self: center; padding: 1rem 1.5rem 1rem 16.34%; }
+    .studio-contact { min-height: 6.125rem; }
+  }
+</style>

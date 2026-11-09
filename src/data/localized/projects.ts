@@ -1,0 +1,23 @@
+export const projectsCatalan = {
+  'Proyectos': 'Projectes',
+  'Proyectos no disponibles': 'Projectes no disponibles',
+  'Proyecto sin título en español': 'Projecte sense títol en català',
+  'Proyecto no encontrado': 'Projecte no trobat',
+  'Arquitectura residencial de e estudio.': 'Arquitectura residencial d’e estudio.',
+  'No podemos mostrar los proyectos en este momento. Inténtalo de nuevo más tarde.':
+    'Ara mateix no podem mostrar els projectes. Torna-ho a provar més tard.',
+  'Todavía no hay proyectos disponibles.': 'Encara no hi ha projectes disponibles.',
+  'El proyecto que buscas no está disponible.': 'El projecte que busques no està disponible.',
+  'Volver a proyectos': 'Torna als projectes',
+  'Cada proyecto,': 'Cada projecte,',
+  'una forma de habitar.': 'una manera d’habitar.',
+  '¿Hablamos?': 'En parlem?',
+  'Ver proyecto': 'Veure el projecte',
+  'imagen': 'imatge',
+  'Categoría': 'Categoria',
+  'Año': 'Any',
+  'Contenido en español pendiente.': 'Contingut en català pendent.',
+  'Imagen principal': 'Imatge principal',
+  'Imágenes de': 'Imatges de',
+  'Hablemos de tu proyecto': 'Parlem del teu projecte',
+};

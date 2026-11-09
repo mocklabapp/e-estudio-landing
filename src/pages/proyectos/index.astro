@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/shared/SiteHeader.astro';
+import SiteFooter from '@/components/shared/SiteFooter.astro';
+import ContactBand from '@/components/sections/ContactBand.astro';
+import ProjectCard from '@/components/projects/ProjectCard.astro';
+import { getProjects } from '@/lib/projects';
+
+import { localizedPage, loadPortfolio, type PortfolioResult } from '@/lib/localized-routes';
+import { localize, type ClientLocale } from '@/data/localized/locale';
+import { projectsCatalan } from '@/data/localized/projects';
+
+interface Props { locale?: ClientLocale; result?: PortfolioResult }
+export const prerender = false;
+const { locale = 'es' } = Astro.props;
+const page = localizedPage('projects', locale);
+if (!page) return new Response(null, { status: 404 });
+const t = localize(locale, projectsCatalan);
+for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
+  Astro.response.headers.set(name, 'no-store');
+}
+const { projects, unavailable } = Astro.props.result ?? await loadPortfolio(getProjects);
+if (unavailable) Astro.response.status = 503;
+---
+<BaseLayout page={page} title={page.content.title} description={page.content.description}>
+  <SiteHeader page={page} />
+  <main id="main-content">
+    <section class="page-width section-space">
+      <h1 class="section-heading mb-12">{t('Proyectos')}</h1>
+      {unavailable ? <p role="status" class="max-w-xl py-12 text-muted">{t('No podemos mostrar los proyectos en este momento. Inténtalo de nuevo más tarde.')}</p> :
+        projects.length === 0 ? <p class="py-12 text-muted">{t('Todavía no hay proyectos disponibles.')}</p> :
+        <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => <ProjectCard project={project} />)}
+        </div>}
+    </section>
+    <ContactBand title={t('Cada proyecto,')} accent={t('una forma de habitar.')} eyebrow={t('¿Hablamos?')} />
+  </main>
+  <SiteFooter />
+</BaseLayout>

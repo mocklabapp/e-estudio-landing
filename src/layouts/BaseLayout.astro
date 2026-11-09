@@ -1,0 +1,45 @@
+---
+import { site } from '@/config/site';
+import '@/styles/global.css';
+import { equivalents, locales, type PublishedPage } from '@/i18n/pages';
+import { defaultLocale } from '@/i18n/locales';
+
+interface Props {
+  title?: string;
+  description?: string;
+  page?: PublishedPage;
+}
+
+const { title, description = site.description, page } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const locale = locales[page?.locale ?? defaultLocale];
+const canonical = Astro.site ? new URL(page?.path ?? Astro.url.pathname, Astro.site) : undefined;
+const alternates = page && Astro.site ? equivalents(page) : [];
+---
+
+<!doctype html>
+<html lang={locale.lang} dir={locale.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-white-32.png"
+      media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/favicon-180.png" />
+    <title>{pageTitle}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={locales[alternate.locale].lang}
+        href={new URL(alternate.path, Astro.site!)} />
+    ))}
+    {alternates.filter(({ locale }) => locale === defaultLocale).map((alternate) => (
+      <link rel="alternate" hreflang="x-default" href={new URL(alternate.path, Astro.site!)} />
+    ))}
+  </head>
+  <body class="bg-canvas font-sans text-ink">
+    <slot />
+  </body>
+</html>

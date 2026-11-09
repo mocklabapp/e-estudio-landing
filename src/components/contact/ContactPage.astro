@@ -1,0 +1,50 @@
+---
+import { localize } from '@/data/localized/locale';
+import { contactCatalan } from '@/data/localized/contact';
+const t = localize(Astro.currentLocale, contactCatalan);
+import ContactForm from '@/components/contact/ContactForm.astro';
+import ContactLocation from '@/components/contact/ContactLocation.astro';
+import ContactMap from '@/components/contact/ContactMap.astro';
+---
+<section class="grid items-center md:grid-cols-2" aria-labelledby="contact-title">
+  <div class="contact-intro section-space">
+    <p class="eyebrow mb-8">{t('Contacto')}</p>
+    <h1 id="contact-title" class="mb-10 max-w-xl font-serif text-display leading-none">
+      {t('Estamos en la')} <span class="text-brand">Casa Bot.</span>
+    </h1>
+    <p class="max-w-md text-base leading-relaxed text-muted">
+      {t('Nuestro estudio se encuentra en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu, justo encima de El Melindró.')}
+    </p>
+  </div>
+  <img
+    src="/contact/facade.png"
+    alt={t('Fachada de la Casa Antoni Clavell Bot, con El Melindró en la planta baja')}
+    width="524" height="499"
+    class="h-full w-full object-cover"
+  />
+</section>
+
+<div class="page-width section-space grid gap-16 border-t border-line md:grid-cols-2 md:gap-20">
+  <ContactForm />
+  <ContactLocation />
+</div>
+
+<section class="grid md:grid-cols-2" aria-label={t('El estudio y su ubicación')}>
+  <img
+    src="/contact/interior.png"
+    alt={t('Mesa de madera con libros de arquitectura y plantas en el interior del estudio')}
+    width="496" height="224" loading="lazy"
+    class="h-full w-full object-cover"
+  />
+  <ContactMap />
+</section>
+
+<style>
+  .contact-intro { padding-inline: 1.5rem; }
+  @media (min-width: 768px) {
+    .contact-intro {
+      padding-inline-start: max(3rem, calc((100vw - 88rem) / 2));
+      padding-inline-end: 3rem;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+interface Props { href: string; label: string; outlined?: boolean }
+const { href, label, outlined = false } = Astro.props;
+---
+<a href={href} class:list={['arrow-link', { outlined }]}>
+  <span>{label}</span><span aria-hidden="true">⟶</span>
+</a>
+<style>
+  .arrow-link { display: inline-flex; justify-content: space-between; align-items: center; gap: 2rem; padding-block: .8rem; border-bottom: 1px solid var(--color-ink); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+  .arrow-link:hover { color: var(--color-brand); border-color: var(--color-brand); }
+  .outlined { border: 1px solid var(--color-ink); padding: 1rem 2rem; }
+</style>

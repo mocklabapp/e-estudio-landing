@@ -1,0 +1,13 @@
+---
+import Home from '@/pages/index.astro';
+import { getProjects } from '@/lib/projects';
+import { localizedPage, loadPortfolio } from '@/lib/localized-routes';
+export const prerender = false;
+for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
+  Astro.response.headers.set(name, 'no-store');
+}
+if (!localizedPage('home', 'ca')) return new Response(null, { status: 404, headers: Astro.response.headers });
+const result = await loadPortfolio(getProjects);
+if (result.unavailable) Astro.response.status = 503;
+---
+<Home locale="ca" result={result} />

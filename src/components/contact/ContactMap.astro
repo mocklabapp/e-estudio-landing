@@ -1,0 +1,60 @@
+---
+import { localize } from '@/data/localized/locale';
+import { contactCatalan } from '@/data/localized/contact';
+const t = localize(Astro.currentLocale, contactCatalan);
+const address = 'Plaça de l’Església, 23, 08440 Cardedeu, Barcelona';
+const destination = encodeURIComponent(address);
+---
+<figure class="flex min-w-0 flex-col justify-center bg-surface p-6 text-ink md:px-8">
+  <svg
+    viewBox="0 0 480 300" width="480" height="300"
+    role="img" aria-labelledby="contact-map-title contact-map-description"
+    focusable="false" class="my-4 h-auto max-h-72 w-full font-sans"
+  >
+    <title id="contact-map-title">{t('e estudio en la Casa Bot, Cardedeu')}</title>
+    <desc id="contact-map-description">
+      {t('Plano orientativo, sin escala. El Ayuntamiento de Cardedeu aparece arriba a la izquierda del estudio; El Melindró, debajo; y la Plaça de l’Església, abajo a la derecha. Para obtener indicaciones precisas, utiliza el enlace a Google Maps.')}
+    </desc>
+    <g aria-hidden="true">
+      <!-- Abstract blocks leave the streets as quiet, bone-coloured negative space. -->
+      <g class="fill-sand stroke-line" stroke-width="1">
+        <path d="M0 0H181L165 33H0Z" />
+        <path d="M211 0H330L306 93H188Z" />
+        <path d="M359 0H480V103L336 94Z" />
+        <path d="M0 106H64L94 158L0 188Z" />
+        <path d="M0 219L109 183L148 300H0Z" />
+        <path d="M139 178L181 166L225 300H180Z" />
+        <path d="M365 133L480 142V204L344 194Z" />
+      </g>
+      <path d="M91 88H153V127H91Z" class="fill-stone" />
+      <path d="M239 160H305V200H239Z" class="fill-sand stroke-stone" />
+      <path d="M272 229L327 216L466 229V292H294Z" class="fill-canvas stroke-line" />
+
+      <g class="fill-muted text-lg">
+        <text x="20" y="66">{t('Ayuntamiento de Cardedeu')}</text>
+        <text x="220" y="224">El Melindró</text>
+        <text x="288" y="264" class="font-serif text-xl">Plaça de l’Església</text>
+      </g>
+
+      <!-- A bespoke studio pin is the only strong accent in the plan. -->
+      <path
+        d="M272 163C266 154 250 138 250 126a22 22 0 0 1 44 0c0 12-16 28-22 37Z"
+        class="fill-brand"
+      />
+      <image href="/brand/monogram-dark.png" x="261" y="114" width="22" height="24"
+        preserveAspectRatio="xMidYMid meet" />
+      <text x="309" y="129" class="fill-ink font-serif text-2xl">e estudio</text>
+      <text x="310" y="150" class="fill-muted text-sm">{t('Casa Bot · 1ª planta')}</text>
+    </g>
+  </svg>
+  <figcaption class="border-t border-line pt-4">
+    <p class="eyebrow mb-2">{t('Plano orientativo')}</p>
+    <p class="text-sm leading-relaxed text-muted">{address}</p>
+    <a
+      href={`https://www.google.com/maps/dir/?api=1&destination=${destination}`}
+      class="mt-2 inline-flex min-h-11 items-center py-2 text-sm underline underline-offset-4 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+    >
+      {t('Cómo llegar en Google Maps')}
+    </a>
+  </figcaption>
+</figure>

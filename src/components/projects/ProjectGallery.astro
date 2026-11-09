@@ -1,0 +1,26 @@
+---
+import { localize } from '@/data/localized/locale';
+import { projectsCatalan } from '@/data/localized/projects';
+const t = localize(Astro.currentLocale, projectsCatalan);
+import type { ProjectImage } from '@/lib/projects';
+import MediaPlaceholder from '@/components/ui/MediaPlaceholder.astro';
+
+interface Props {
+  images?: ProjectImage[];
+  title: string;
+  startIndex?: number;
+  total?: number;
+}
+const { images = [], title, startIndex = 0, total = images.length } = Astro.props;
+---
+{images.length === 0 ? <MediaPlaceholder label={title} /> :
+  <section aria-label={`${t('Imágenes de')} ${title}`}>
+    <ul class:list={['grid gap-4 sm:grid-cols-2', images.length >= 3 && 'lg:grid-cols-3']}>
+      {images.map((image, index) => (
+        <li class="min-w-0">
+          <img src={image.url} alt={`${title} — ${t('imagen')} ${startIndex + index + 1} de ${total}`}
+            loading="lazy" decoding="async" class="aspect-3/2 w-full bg-surface object-contain" />
+        </li>
+      ))}
+    </ul>
+  </section>}

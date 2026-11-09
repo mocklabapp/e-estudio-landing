@@ -1,0 +1,3 @@
+# Single-package project; keep the routing security fix scoped to its parent.
+overrides:
+  '@vercel/routing-utils>path-to-regexp': '6.3.0'

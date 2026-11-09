@@ -1,0 +1,19 @@
+---
+import { localize } from '@/data/localized/locale';
+import { shellCatalan } from '@/data/localized/shell';
+const t = localize(Astro.currentLocale, shellCatalan);
+interface Props { label: string; portrait?: boolean; class?: string }
+const { label, portrait = false, class: className } = Astro.props;
+---
+<div class:list={['media-placeholder', { portrait }, className]} role="img" aria-label={`${t('Imagen pendiente')}: ${label}`}>
+  <span class="frame" aria-hidden="true"></span>
+  <span class="caption"><span>{label}</span><small>{t('Imagen pendiente')}</small></span>
+</div>
+<style>
+  .media-placeholder { position: relative; display: grid; place-items: center; overflow: hidden; aspect-ratio: 3 / 2; background: var(--color-surface); color: var(--color-muted); }
+  .portrait { aspect-ratio: 4 / 5; }
+  .frame { position: absolute; inset: 12% 15%; border: 1px solid var(--color-sand); }
+  .frame::after { content: ''; position: absolute; inset: 20% -8% -20% 30%; border: 1px solid var(--color-sand); background: var(--color-surface); }
+  .caption { position: relative; text-align: center; padding: 1rem; background: var(--color-surface); font-size: .875rem; }
+  small { display: block; margin-top: .4rem; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+</style>

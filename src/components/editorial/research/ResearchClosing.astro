@@ -1,0 +1,27 @@
+---
+import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { researchCatalan } from '@/data/localized/research';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, researchCatalan);
+---
+
+<!-- Keep this partial sunset beside the copy rather than stretching it into a full backdrop. -->
+<section class="bg-ink text-on-brand" aria-labelledby="research-contact">
+  <div class="page-width grid items-center gap-10 py-12 md:grid-cols-2 md:gap-16 md:py-16">
+    <div>
+      <p class="eyebrow mb-6">{t('Empezamos a hablar')}</p>
+      <h2 id="research-contact" class="section-heading font-serif">
+        {t('Habitar empieza con una conversación.')}
+      </h2>
+      <a
+        href={pagePath('contact', locale)}
+        class="mt-8 inline-flex items-center gap-12 border border-on-brand px-8 py-4 text-sm uppercase tracking-widest hover:bg-on-brand hover:text-ink focus-visible:outline-on-brand"
+      >
+        <span>{t('Contacto')}</span><span aria-hidden="true">⟶</span>
+      </a>
+    </div>
+    <ResearchPhoto name="sunset-clean-detail-crop" class="max-w-lg justify-self-center" />
+  </div>
+</section>

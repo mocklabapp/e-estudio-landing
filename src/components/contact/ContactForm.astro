@@ -1,0 +1,71 @@
+---
+import { clientLocale, localize } from '@/data/localized/locale';
+import { contactCatalan } from '@/data/localized/contact';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, contactCatalan);
+---
+<section aria-labelledby="contact-form-title">
+  <p class="eyebrow mb-8">{t('Escríbenos')}</p>
+  <h2 id="contact-form-title" class="section-heading mb-8 font-serif">{t('Hablemos.')}</h2>
+  <div data-contact-preview data-locale={locale} role="form" aria-labelledby="contact-form-title" aria-describedby="contact-demo-notice">
+    <p id="contact-demo-notice" class="mb-4 text-sm text-muted">
+      {t('Formulario de demostración. No se envían ni guardan datos.')}
+    </p>
+    <p class="mb-8 text-sm text-muted">{t('Todos los campos son obligatorios. Usa datos de prueba.')}</p>
+    <div class="grid gap-7">
+      <div class="field">
+        <label for="contact-name">{t('Nombre')}</label>
+        <input id="contact-name" type="text" autocomplete="off" maxlength="120" required />
+      </div>
+      <div class="field">
+        <label for="contact-contact">{t('Email o teléfono')}</label>
+        <input id="contact-contact" type="text" autocomplete="off" maxlength="160" required />
+      </div>
+      <div class="field">
+        <label for="contact-subject">{t('¿Sobre qué quieres hablar?')}</label>
+        <select id="contact-subject" required>
+          <option value="">{t('Selecciona una opción')}</option>
+          <option>{t('Habitar')}</option>
+          <option>{t('Promover')}</option>
+          <option>Living Research</option>
+          <option>{t('Otra consulta')}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="contact-message">{t('Mensaje')}</label>
+        <textarea id="contact-message" rows="4" autocomplete="off" maxlength="3000" required></textarea>
+      </div>
+    </div>
+    <button id="contact-simulate" type="button" disabled class="mt-8 inline-flex min-h-12 items-center gap-8 border border-ink bg-ink text-on-brand px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50">
+      {t('Simular envío')} <span aria-hidden="true">↗</span>
+    </button>
+    <p id="contact-status" role="status" aria-live="polite" aria-atomic="true" class="mt-4 min-h-12 text-sm"></p>
+    <noscript>
+      <p class="mt-4 text-sm text-muted">{t('Activa JavaScript para probar la simulación. No se envían ni guardan datos.')}</p>
+    </noscript>
+  </div>
+</section>
+
+<script>
+  import { enhanceContactPreview } from '@/lib/contact-preview';
+
+  document.querySelectorAll<HTMLElement>('[data-contact-preview]').forEach((root) => {
+    enhanceContactPreview(root, root.dataset.locale);
+  });
+</script>
+
+<style>
+  .field { display: grid; gap: 0.75rem; }
+  label { font-size: 0.875rem; }
+  input, select, textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    border-radius: 0;
+  }
+  textarea { resize: vertical; }
+  [aria-invalid='true'] { border-bottom-color: var(--color-ink); border-bottom-width: 2px; }
+</style>

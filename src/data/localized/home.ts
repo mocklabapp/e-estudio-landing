@@ -1,0 +1,16 @@
+export const homeCatalan = {
+  'Conocer el estudio': 'Coneix l’estudi',
+  'Arquitectura e investigación': 'Arquitectura i recerca',
+  'Patio abierto al jardín, con un olivo junto al porche': 'Pati obert al jardí, amb una olivera al costat del porxo',
+  'Nuestra arquitectura': 'La nostra arquitectura',
+  'Proyectamos espacios para ser habitados.': 'Projectem espais per ser habitats.',
+  'Ver servicios': 'Veure els serveis',
+  'Libros junto a una ventana abierta al paisaje arbolado': 'Llibres al costat d’una finestra oberta al paisatge arbrat',
+  'Investigamos nuevas formas de habitar.': 'Investiguem noves maneres d’habitar.',
+  'Descubrir Living Research': 'Descobreix Living Research',
+  'Empezamos a hablar': 'Comencem a parlar',
+  'Habitar empieza con una conversación.': 'Habitar comença amb una conversa.',
+  'Contacto': 'Contacte',
+  'Proyectos destacados': 'Projectes destacats',
+  'Ver todos los proyectos': 'Veure tots els projectes',
+};

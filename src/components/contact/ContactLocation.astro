@@ -1,0 +1,25 @@
+---
+import { localize } from '@/data/localized/locale';
+import { contactCatalan } from '@/data/localized/contact';
+const t = localize(Astro.currentLocale, contactCatalan);
+---
+<section aria-labelledby="contact-location-title">
+  <p class="eyebrow mb-8">{t('Ven a vernos')}</p>
+  <h2 id="contact-location-title" class="section-heading mb-10 font-serif">{t('Justo encima de El Melindró.')}</h2>
+  <p class="mb-8 max-w-md text-base leading-relaxed text-muted">
+    {t('Estamos en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu.')}
+  </p>
+  <address class="grid gap-6 text-base leading-relaxed not-italic">
+    <p>Plaça de l’Església, 23<br />08440 Cardedeu, Barcelona</p>
+    <ul class="grid gap-2">
+      <li><a class="inline-flex min-h-11 items-center underline underline-offset-4" href="tel:+34615123456">+34 615 123 456</a></li>
+      <li><a class="inline-flex min-h-11 items-center break-all underline underline-offset-4" href="mailto:hola@eestudiohabitar.com">hola@eestudiohabitar.com</a></li>
+      <li><a class="inline-flex min-h-11 items-center break-all underline underline-offset-4" href="https://www.instagram.com/e_estudio_habitar/">Instagram · @e_estudio_habitar</a></li>
+    </ul>
+  </address>
+  <div class="mt-10 border-t border-line pt-8 text-sm leading-relaxed">
+    <h3 class="eyebrow mb-4">{t('Horario')}</h3>
+    <p>{t('De lunes a viernes')} <span class="whitespace-nowrap">9:00–18:00</span></p>
+    <p class="mt-2 text-muted">{t('Con cita previa.')}</p>
+  </div>
+</section>

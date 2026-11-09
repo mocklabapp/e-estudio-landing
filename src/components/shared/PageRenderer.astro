@@ -1,0 +1,42 @@
+---
+import { site } from '@/config/site';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/shared/SiteHeader.astro';
+import SiteFooter from '@/components/shared/SiteFooter.astro';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher.astro';
+import HomePage from '@/components/editorial/HomePage.astro';
+import StudioPage from '@/components/editorial/StudioPage.astro';
+import ServicesPage from '@/components/editorial/ServicesPage.astro';
+import ResearchPage from '@/components/editorial/ResearchPage.astro';
+import ContactPage from '@/components/contact/ContactPage.astro';
+import { publishedPages, type PublishedPage } from '@/i18n/pages';
+import type { PublicProject } from '@/lib/projects';
+
+interface Props {
+  page?: PublishedPage;
+  projects?: readonly PublicProject[];
+  unavailable?: boolean;
+}
+// Rendering stays shared; only the root route owns live Home data access.
+const { page = publishedPages().find(({ path }) => path === '/')!,
+  projects = [], unavailable = false } = Astro.props;
+const { content } = page;
+const clientPage = (page.locale === 'es' || page.locale === 'ca') &&
+  ['home', 'studio', 'services', 'research', 'contact'].includes(page.id);
+---
+<BaseLayout page={page} title={content.title === site.name ? undefined : content.title}
+  description={content.description}>
+  {clientPage && <SiteHeader path={page.path} page={page} />}
+  <main id="main-content">
+    {clientPage ? <>
+      {page.id === 'home' && <HomePage title={content.title} description={content.body}
+        projects={projects} unavailable={unavailable} />}
+      {page.id === 'studio' && <StudioPage />}
+      {page.id === 'services' && <ServicesPage />}
+      {page.id === 'research' && <ResearchPage />}
+      {page.id === 'contact' && <ContactPage />}
+    </> : <><h1>{content.title}</h1><p>{content.body}</p></>}
+    {!clientPage && <LanguageSwitcher page={page} />}
+  </main>
+  {clientPage && <SiteFooter />}
+</BaseLayout>

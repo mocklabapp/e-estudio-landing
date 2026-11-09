@@ -1,0 +1,65 @@
+---
+import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
+import ResearchMethod from '@/components/editorial/research/ResearchMethod.astro';
+import ResearchClosing from '@/components/editorial/research/ResearchClosing.astro';
+import { housingModels, researchQuestions } from '@/data/editorial';
+import { localize } from '@/data/localized/locale';
+import { researchCatalan } from '@/data/localized/research';
+const t = localize(Astro.currentLocale, researchCatalan);
+
+// Page-local associations leave the shared editorial copy and sibling pages unchanged.
+const modelPhotos = [
+  'cohousing', 'coliving', 'intergenerational-community', 'other-living-models',
+] as const;
+const questionPhotos = [
+  'research-older-man-landscape', 'research-young-man-city', 'research-house',
+] as const;
+---
+
+<section class="page-width grid items-center gap-10 py-12 md:grid-cols-2 md:gap-16 md:py-20">
+  <div>
+    <p class="eyebrow mb-8">Living Research</p>
+    <h1 class="font-serif text-display font-light leading-tight">
+      {t('La forma de habitar está cambiando.')}
+    </h1>
+    <p class="mt-8 max-w-xl text-lg leading-relaxed">
+      {t('Vivimos más años. Las familias ya no responden a un modelo único. Cada vez más personas viven solas. Trabajamos y nos relacionamos de otra manera.')}
+    </p>
+    <p class="mt-6 max-w-xl leading-relaxed text-muted">
+      {t('En e estudio investigamos nuevas formas de habitar, conectando arquitectura, personas y conocimiento para explorar modelos de vivienda que respondan mejor a las necesidades actuales.')}
+    </p>
+  </div>
+  <ResearchPhoto name="hero-photo-clean-crop" eager class="max-w-xl justify-self-center" />
+</section>
+
+<section class="bg-surface section-space" aria-labelledby="research-models">
+  <div class="page-width">
+    <p class="eyebrow mb-8">{t('Descubrir')}</p>
+    <h2 id="research-models" class="section-heading mb-12 max-w-4xl font-serif">
+      {t('¿Conoces todas las formas en las que podemos vivir?')}
+    </h2>
+    <ul class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+      {housingModels.map((model, index) => (
+        <li>
+          <ResearchPhoto name={modelPhotos[index]} />
+          <h3 class="mt-5 break-words font-serif text-2xl font-light">{t(model)}</h3>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="page-width section-space" aria-labelledby="research-questions">
+  <h2 id="research-questions" class="eyebrow mb-10">{t('Preguntas abiertas')}</h2>
+  <div class="grid gap-10 md:grid-cols-3">
+    {researchQuestions.map((question, index) => (
+      <div>
+        <ResearchPhoto name={questionPhotos[index]} />
+        <h3 class="mt-6 font-serif text-3xl leading-tight">{t(question)}</h3>
+      </div>
+    ))}
+  </div>
+</section>
+
+<ResearchMethod />
+<ResearchClosing />

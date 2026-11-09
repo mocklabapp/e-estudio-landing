@@ -1,0 +1,16 @@
+---
+import ArrowLink from '@/components/ui/ArrowLink.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { shellCatalan } from '@/data/localized/shell';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, shellCatalan);
+interface Props { title?: string; accent?: string; eyebrow?: string }
+const { title = t('Habitar empieza'), accent = t('con una conversación.'), eyebrow = t('Empezamos a hablar') } = Astro.props;
+---
+<section class="bg-surface section-space">
+  <div class="page-width flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+    <div><p class="eyebrow mb-6">{eyebrow}</p><h2 class="section-heading font-serif">{title}<br /><span class="text-brand">{accent}</span></h2></div>
+    <div><ArrowLink href={pagePath('contact', locale)} label={t('Contacto')} outlined /></div>
+  </div>
+</section>

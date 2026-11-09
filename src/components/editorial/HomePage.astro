@@ -1,0 +1,36 @@
+---
+import ArrowLink from '@/components/ui/ArrowLink.astro';
+import HomeEditorial from '@/components/home/HomeEditorial.astro';
+import HomeProjects from '@/components/home/HomeProjects.astro';
+import HomeContact from '@/components/home/HomeContact.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { homeCatalan } from '@/data/localized/home';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, homeCatalan);
+import type { PublicProject } from '@/lib/projects';
+
+interface Props {
+  title: string;
+  description: string;
+  projects?: readonly PublicProject[];
+  unavailable?: boolean;
+}
+const { title, description, projects = [], unavailable = false } = Astro.props;
+---
+
+<section class="page-width pt-12 pb-12 text-center font-sans md:pt-16">
+  <div class="text-display font-light leading-none tracking-tight">
+    <h1>{title}</h1>
+  </div>
+  <div class="mx-auto mt-4 max-w-5xl text-2xl font-light leading-tight text-brand md:text-4xl">
+    <p>{description}</p>
+  </div>
+  <div class="mt-10">
+    <ArrowLink href={pagePath('studio', locale)} label={t('Conocer el estudio')} />
+  </div>
+</section>
+
+<HomeEditorial />
+<HomeProjects projects={projects} unavailable={unavailable} />
+<HomeContact />

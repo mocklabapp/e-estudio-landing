@@ -1,0 +1,14 @@
+---
+import Project from '@/pages/proyectos/[id].astro';
+import { getProjects } from '@/lib/projects';
+import { localizedPage, loadPortfolio } from '@/lib/localized-routes';
+export const prerender = false;
+for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
+  Astro.response.headers.set(name, 'no-store');
+}
+if (!localizedPage('projects', 'ca')) return new Response(null, { status: 404, headers: Astro.response.headers });
+const id = Astro.params.id ?? '';
+const result = await loadPortfolio(getProjects, id);
+if (!result.projects.some(project => project.id === id)) Astro.response.status = result.unavailable ? 503 : 404;
+---
+<Project locale="ca" result={result} />

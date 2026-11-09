@@ -1,0 +1,17 @@
+---
+import ArrowLink from '@/components/ui/ArrowLink.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { homeCatalan } from '@/data/localized/home';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, homeCatalan);
+---
+<section class="bg-sand py-12 md:py-14" aria-labelledby="home-conversation">
+  <div class="page-width flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+    <div class="max-w-2xl">
+      <p class="eyebrow mb-6">{t('Empezamos a hablar')}</p>
+      <h2 id="home-conversation" class="section-heading font-serif">{t('Habitar empieza con una conversación.')}</h2>
+    </div>
+    <div class="shrink-0"><ArrowLink href={pagePath('contact', locale)} label={t('Contacto')} outlined /></div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import BrandMark from '@/components/ui/BrandMark.astro';
+import { navigationFor } from '@/data/navigation';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher.astro';
+import type { PublishedPage } from '@/i18n/pages';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { shellCatalan } from '@/data/localized/shell';
+import { pagePath } from '@/lib/localized-routes';
+interface Props { path?: string; page?: PublishedPage }
+const { path = Astro.url.pathname, page } = Astro.props;
+const locale = page?.locale ?? clientLocale(Astro.currentLocale);
+const navigation = navigationFor(locale);
+const t = localize(locale, shellCatalan);
+---
+<a href="#main-content" class="skip-link">{t('Saltar al contenido')}</a>
+<header class="page-width flex items-center justify-between gap-6 py-8">
+  <a href={pagePath('home', locale)} aria-label={t('e estudio — Inicio')} class="min-w-0"><BrandMark /></a>
+  <nav aria-label={t('Navegación principal')} class="hidden lg:block">
+    <ul class="flex items-center gap-8 text-sm">
+      {navigation.map(({ href, label }) => <li><a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a></li>)}
+    </ul>
+  </nav>
+  {page && <LanguageSwitcher page={page} compact />}
+  <details class="relative shrink-0 lg:hidden">
+    <summary class="p-3 text-sm">Menú <span aria-hidden="true">☰</span></summary>
+    <nav aria-label={t('Navegación móvil')} class="absolute right-0 top-full z-20 min-w-64 border border-line bg-canvas p-6 shadow-sm">
+      <ul class="flex flex-col gap-6">
+        {navigation.map(({ href, label }) => <li><a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a></li>)}
+      </ul>
+    </nav>
+  </details>
+</header>
+<style>
+  a[aria-current='page'] { border-bottom: 1px solid var(--color-ink); padding-bottom: .5rem; }
+  .skip-link { position: absolute; top: .5rem; left: 1rem; z-index: 50; padding: .75rem; background: var(--color-canvas); transform: translateY(-200%); }
+  .skip-link:focus { transform: translateY(0); }
+</style>

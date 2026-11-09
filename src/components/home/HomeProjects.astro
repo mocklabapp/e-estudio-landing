@@ -1,0 +1,32 @@
+---
+import HomeProjectCard from '@/components/home/HomeProjectCard.astro';
+import { clientLocale, localize } from '@/data/localized/locale';
+import { homeCatalan } from '@/data/localized/home';
+import { projectsCatalan } from '@/data/localized/projects';
+import { pagePath } from '@/lib/localized-routes';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, { ...homeCatalan, ...projectsCatalan });
+import type { PublicProject } from '@/lib/projects';
+
+interface Props {
+  projects: readonly PublicProject[];
+  unavailable: boolean;
+}
+const { projects, unavailable } = Astro.props;
+---
+<section class="border-t border-line py-8 md:pb-10" aria-labelledby="home-projects">
+  <div class="page-width">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4 text-sm">
+      <h2 id="home-projects">{t('Proyectos destacados')}</h2>
+      <a href={pagePath('projects', locale)} class="py-2 underline underline-offset-4 hover:text-brand">
+        {t('Ver todos los proyectos')} <span aria-hidden="true">⟶</span>
+      </a>
+    </div>
+    {unavailable ? <p role="status" class="py-12 text-muted">
+      {t('No podemos mostrar los proyectos en este momento. Inténtalo de nuevo más tarde.')}
+    </p> : projects.length === 0 ? <p class="py-12 text-muted">{t('Todavía no hay proyectos disponibles.')}</p> :
+      <div class="mt-6 grid gap-8 md:grid-cols-3">
+        {projects.map((project) => <HomeProjectCard project={project} />)}
+      </div>}
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import { localize } from '@/data/localized/locale';
+import { shellCatalan } from '@/data/localized/shell';
+const t = localize(Astro.currentLocale, shellCatalan);
+interface Props {
+  variant?: 'estudio' | 'living';
+  compact?: boolean;
+}
+const { variant = 'estudio', compact = false } = Astro.props;
+const typographic = compact && variant === 'estudio';
+const artwork = typographic ? 'typographic' : 'primary';
+const subtitle = t(variant === 'estudio' ? 'Arquitectura residencial' : 'Inmobiliaria y servicios');
+---
+<span class:list={['brand-mark', { compact }]} aria-label={`e ${variant}`}>
+  <img
+    src={`/brand/e-${variant}-${artwork}-dark.png`}
+    alt={`e ${variant} — ${subtitle}`}
+    width={typographic ? 348 : 473}
+    height={typographic ? 99 : 153}
+  />
+</span>
+<style>
+  .brand-mark { display: inline-block; width: 236px; max-width: 100%; vertical-align: middle; }
+  .brand-mark.compact { width: 174px; }
+  img { display: block; width: 100%; height: auto; }
+</style>

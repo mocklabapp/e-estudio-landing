@@ -1,0 +1,35 @@
+---
+import { localize } from '@/data/localized/locale';
+import { studioCatalan } from '@/data/localized/studio';
+const t = localize(Astro.currentLocale, studioCatalan);
+import { team } from '@/data/editorial';
+import { portraits } from '@/components/editorial/studio/assets';
+---
+
+<section class="studio-team" aria-labelledby="studio-team">
+  <h2 id="studio-team" class="eyebrow">{t('El equipo')}</h2>
+  <ul>
+    {team.map(({ name, role }) => (
+      <li>
+        <img {...portraits[name]} alt={`${t('Retrato de')} ${name}`} loading="lazy" decoding="async" />
+        <h3 class="text-base font-light">{name}</h3>
+        <p class="text-xs text-muted">{t(role)}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .studio-team { padding: 2rem 6.45%; }
+  h2 { margin-bottom: 1rem; }
+  ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; }
+  li { min-width: 0; }
+  img { max-width: 100%; height: auto; }
+  h3 { margin-top: .5rem; }
+  p { margin-top: .25rem; }
+
+  @media (min-width: 48rem) {
+    .studio-team { min-height: 13.5rem; padding-block: 1rem 2rem; }
+    ul { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.75rem; }
+  }
+</style>

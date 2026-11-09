@@ -1,0 +1,17 @@
+---
+import PageRenderer from '@/components/shared/PageRenderer.astro';
+import { publishedPages, type PublishedPage } from '@/i18n/pages';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  // Explicit live routes own ES/CA homes and portfolio lists; siblings stay static.
+  return publishedPages().filter(({ path, id, locale }) => path !== '/' && path !== '/ca/'
+    && !(id === 'projects' && (locale === 'es' || locale === 'ca'))).map((page) => ({
+    params: { path: page.path.slice(1, -1) },
+    props: { page },
+  }));
+}
+interface Props { page: PublishedPage }
+---
+<PageRenderer page={Astro.props.page} />
