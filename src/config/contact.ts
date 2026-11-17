@@ -3,6 +3,8 @@
 export const studioContact = {
   street: 'Plaça de l’Església, 23',
   locality: '08440 Cardedeu, Barcelona',
+  // Short public locality shown in the footer; the street stays on the Contact page.
+  city: 'Cardedeu, Barcelona',
   phoneLabel: '+34 615 123 456',
   phoneHref: 'tel:+34615123456',
   email: 'hola@eestudiohabitar.com',

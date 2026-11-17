@@ -45,18 +45,35 @@ test('contact content renders truthful location, labels and a safe non-submittin
   const component = await import(await compileComponent(resolve(root, 'src/components/contact/ContactPage.astro')));
   const html = await container.renderToString(component.default);
   for (const text of [
-    'Estamos en la', 'Casa Bot.', 'Escríbenos', 'Hablemos.', 'Ven a vernos', 'Justo encima de El Melindró.',
+    'Estamos en', 'Casa Bot.', 'Escríbenos', 'Hablemos.', 'Ven a vernos', 'Justo encima de El Melindró.',
     'Nuestro estudio se encuentra en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu, justo encima de El Melindró.',
     'Plaça de l’Església, 23', '08440 Cardedeu, Barcelona',
     'Formulario de demostración. No se envían ni guardan datos.',
     '+34 615 123 456', 'hola@eestudiohabitar.com', '@e_estudio_habitar',
     'De lunes a viernes', '9:00–18:00', 'Con cita previa.',
+    'Horario', 'Si tienes una idea, una pregunta o quieres formar parte de alguno de nuestros proyectos, puedes dejarnos tu mensaje. Te responderemos lo antes posible.',
   ]) assert.ok(html.includes(text), `Rendered content must include: ${text}`);
+  for (const placeholder of ['Tu nombre', 'Tu email o teléfono', 'Cuéntanos…']) {
+    assert.ok(html.includes(`placeholder="${placeholder}"`), `Placeholder: ${placeholder}`);
+  }
+  assert.match(html, /<option value=""[^>]*>Selecciona una opción<\/option>/);
+  assert.ok(html.includes('Simular envío'), 'The simulated button label stays honest');
+  assert.match(html, /<h1\b[^>]*\bfont-serif\b/);
+  for (const id of ['contact-form-title', 'contact-location-title']) {
+    assert.match(html, new RegExp(`<h2 id="${id}"[^>]*\\bfont-serif\\b`));
+  }
+  assert.match(html, /<span class="[^"]*text-brand[^"]*">Casa Bot\.<\/span>/);
+  assert.ok((html.match(/<p class="[^"]*\beyebrow\b[^"]*\btitle-rule\b/g) ?? []).length >= 3, 'Eyebrows carry the short rule');
+  const locationIcons = html.match(/<address\b[\s\S]*?<\/address>/)?.[0].match(/<svg\b[^>]*aria-hidden="true"/g) ?? [];
+  assert.equal(locationIcons.length, 4, 'Line icons for address, phone, email and Instagram');
+  const schedule = html.match(/<div class="[^"]*\bcontact-hours\b[^"]*">[\s\S]*?<\/div>/)?.[0];
+  assert.ok(schedule?.includes('<svg') && schedule.includes('Horario') && schedule.includes('9:00–18:00'), 'Separate Horario column with a clock icon');
+  assert.match(html, /<div class="[^"]*\bmd:border-l\b/, 'Fine vertical line between form and location');
   for (const [id, label] of [
     ['name', 'Nombre'], ['contact', 'Email o teléfono'],
     ['subject', '¿Sobre qué quieres hablar?'], ['message', 'Mensaje'],
   ]) {
-    assert.match(html, new RegExp(`<label[^>]*for="contact-${id}"[^>]*>\\s*${label.replace(/[?]/g, '\\?')}\\s*</label>`));
+    assert.match(html, new RegExp(`<label[^>]*for="contact-${id}"[^>]*>\\s*${label.replace(/[?]/g, '\\?')}\\s*<span aria-hidden="true"[^>]*>\\*</span>\\s*</label>`));
     assert.match(html, new RegExp(`<(?:input|select|textarea)[^>]*id="contact-${id}"[^>]*required`));
   }
   assert.match(html, /<select[^>]*id="contact-subject"/);

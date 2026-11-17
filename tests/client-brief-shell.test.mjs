@@ -33,7 +33,25 @@ test('every footer shows the real contact data and social link', () => {
     assert.match(footer, /href="tel:\+34615123456"/);
     assert.match(footer, /href="mailto:hola@eestudiohabitar\.com"/);
     assert.match(footer, /href="https:\/\/www\.instagram\.com\/e_estudio_habitar\/"/);
-    assert.match(footer, /Plaça de l’Església, 23/);
+    assert.match(footer, /Cardedeu, Barcelona/);
+    assert.doesNotMatch(footer, /Plaça de l’Església, 23|08440/);
+  }
+});
+
+test('the footer Instagram link is an icon with an accessible name', () => {
+  for (const html of [home, studio, studioCa, services]) {
+    const link = footerOf(html).match(/<a\b[^>]*href="https:\/\/www\.instagram\.com\/e_estudio_habitar\/"[^>]*>[\s\S]*?<\/a>/)?.[0];
+    assert.ok(link, 'Missing Instagram link');
+    assert.match(link, /aria-label="Instagram[^"]*e_estudio_habitar"/);
+    assert.match(link, /<svg\b[^>]*aria-hidden="true"/);
+  }
+});
+
+test('the footer adds no legal, LinkedIn or privacy links until real URLs exist', () => {
+  for (const html of [home, studio, studioCa, services]) {
+    const footer = footerOf(html);
+    assert.doesNotMatch(footer, /linkedin|Aviso legal|Avís legal|Privacidad|Privacitat|Cookies|política de privacidad/i);
+    assert.doesNotMatch(footer, /href="#?"/);
   }
 });
 
