@@ -15,5 +15,7 @@ export const servicesCatalan = {
   '¿Buscas una vivienda terminada?': 'Busques un habitatge acabat?',
   'Descubre e living, nuestra propuesta inmobiliaria.': 'Descobreix e living, la nostra proposta immobiliària.',
   'Preguntar por e living': 'Pregunta per e living',
-  'Vivir es una elección.': 'Viure és una elecció.',
+  '¿Hablamos?': 'En parlem?',
+  'Vivir': 'Viure',
+  'es una elección.': 'és una elecció.',
 };

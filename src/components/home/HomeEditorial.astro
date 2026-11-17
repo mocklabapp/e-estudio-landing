@@ -6,26 +6,26 @@ import { pagePath } from '@/lib/localized-routes';
 const locale = clientLocale(Astro.currentLocale);
 const t = localize(locale, homeCatalan);
 ---
-<section class="page-width grid gap-12 pb-10 md:grid-cols-2 md:gap-14"
+<section class="page-width grid gap-12 pb-12 md:grid-cols-2 md:gap-0"
   aria-label={t('Arquitectura e investigación')}>
-  <div class="min-w-0">
+  <div class="min-w-0 md:pr-14">
     <img src="/home/architecture.png" width="436" height="282"
       alt={t('Patio abierto al jardín, con un olivo junto al porche')}
       loading="eager" decoding="async" class="h-auto w-full bg-surface" />
-    <p class="eyebrow mt-6 text-muted">{t('Nuestra arquitectura')}</p>
-    <h2 class="mt-4 text-3xl font-light leading-tight md:text-4xl">
+    <p class="eyebrow title-rule mt-6">{t('Nuestra arquitectura')}</p>
+    <h2 class="mt-6 text-3xl font-light leading-tight md:text-4xl">
       {t('Proyectamos espacios para ser habitados.')}
     </h2>
-    <div class="mt-4"><ArrowLink href={pagePath('services', locale)} label={t('Ver servicios')} /></div>
+    <div class="mt-8"><ArrowLink href={pagePath('services', locale)} label={t('Ver servicios')} /></div>
   </div>
-  <div class="min-w-0">
+  <div class="min-w-0 md:border-l md:border-line md:pl-14">
     <img src="/home/living-research.png" width="437" height="282"
       alt={t('Libros junto a una ventana abierta al paisaje arbolado')}
       loading="lazy" decoding="async" class="h-auto w-full bg-surface" />
-    <p class="eyebrow mt-6 text-muted">Living Research</p>
-    <h2 class="mt-4 text-3xl font-light leading-tight md:text-4xl">
+    <p class="eyebrow title-rule mt-6">Living Research</p>
+    <h2 class="mt-6 text-3xl font-light leading-tight md:text-4xl">
       {t('Investigamos nuevas formas de habitar.')}
     </h2>
-    <div class="mt-4"><ArrowLink href={pagePath('research', locale)} label={t('Descubrir Living Research')} /></div>
+    <div class="mt-8"><ArrowLink href={pagePath('research', locale)} label={t('Descubrir Living Research')} /></div>
   </div>
 </section>

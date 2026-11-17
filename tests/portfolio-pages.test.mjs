@@ -108,6 +108,9 @@ test('portfolio HTML uses the fixed owner, reflects updates and handles missing 
       assert.match(card, /<h2\b[^>]*>Test 4<\/h2>/);
       assert.match(card, /<dd>Residencial<\/dd>/);
       assert.match(card, /2026/);
+      assert.ok(card.indexOf('<dd>2026</dd>') < card.indexOf('<dd>Residencial</dd>'),
+        'Year line precedes the category line, as in the mockup');
+      assert.doesNotMatch(card, /·/);
       assert.doesNotMatch(card, /Contenido en español pendiente/);
       assert.match(imageTags(card)[0], /alt="[^"]*Test 4[^"]*"/);
       assert.match(imageTags(card)[0], /loading="lazy"/);

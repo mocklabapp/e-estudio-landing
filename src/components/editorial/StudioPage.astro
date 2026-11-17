@@ -10,8 +10,7 @@ const t = localize(locale, studioCatalan);
 ---
 
 <section class="studio-hero text-center">
-  <p class="eyebrow">{t('El estudio')}</p>
-  <div class="hero-rule" aria-hidden="true"></div>
+  <p class="eyebrow title-rule text-center">{t('El estudio')}</p>
   <h1 class="font-sans text-3xl font-light sm:text-4xl lg:text-5xl">
     <span>{t('Creamos espacios,')}</span>
     <span>{t('investigamos nuevas')}</span>
@@ -20,11 +19,11 @@ const t = localize(locale, studioCatalan);
 </section>
 
 <section class="philosophy bg-surface" aria-labelledby="studio-philosophy">
-  <h2 id="studio-philosophy" class="eyebrow">{t('Nuestra filosofía')}</h2>
+  <h2 id="studio-philosophy" class="eyebrow title-rule">{t('Nuestra filosofía')}</h2>
   <div class="principles">
     {philosophy.map(({ title, description }) => (
       <div class="principle">
-        <h3 class="text-3xl font-light">{t(title)}</h3>
+        <h3 class="title-rule text-3xl font-light">{t(title)}</h3>
         <p class="text-sm text-muted">{t(description)}</p>
       </div>
     ))}
@@ -33,8 +32,8 @@ const t = localize(locale, studioCatalan);
 
 <section class="founders" aria-labelledby="studio-founders">
   <div class="founders-copy">
-    <p class="eyebrow">{t('Nosotras')}</p>
-    <h2 id="studio-founders" class="text-3xl font-light">{t('Dos trayectorias complementarias.')}</h2>
+    <p class="eyebrow title-rule">{t('Nosotras')}</p>
+    <h2 id="studio-founders" class="title-rule text-3xl font-light">{t('Dos trayectorias complementarias.')}</h2>
     <p class="founders-description text-xl font-light">{t('Una misma manera de entender la arquitectura.')}</p>
   </div>
   <img src="/studio/photos/founders-working.png" width="584" height="268"
@@ -49,7 +48,7 @@ const t = localize(locale, studioCatalan);
 
 <section class="studio-space" aria-labelledby="studio-space">
   <div class="space-copy">
-    <p class="eyebrow">{t('Nuestro estudio')}</p>
+    <p class="eyebrow title-rule">{t('Nuestro estudio')}</p>
     <h2 id="studio-space" class="text-3xl font-light">
       {t('Un lugar abierto')}<br />{t('a la')} <span class="text-brand">{t('conversación.')}</span>
     </h2>
@@ -67,7 +66,7 @@ const t = localize(locale, studioCatalan);
 
 <style>
   .studio-hero { padding: 3rem 1.5rem; }
-  .hero-rule { width: 2rem; margin: .75rem auto 1rem; border-top: 1px solid var(--color-line); }
+  .studio-hero h1 { margin-top: 1rem; }
   h1 { line-height: 1.1; }
   h1 span { display: block; }
   .philosophy { padding-block: 2rem; }
@@ -78,7 +77,7 @@ const t = localize(locale, studioCatalan);
   .founders, .studio-space { display: grid; }
   .founders-copy, .space-copy { padding: 2rem 6.45%; }
   .founders h2, .space-copy h2 { margin-top: 1.5rem; line-height: 1.15; }
-  .founders-description { margin-top: 1rem; max-width: 18rem; line-height: 1.4; }
+  .founders-description { margin-top: .75rem; max-width: 18rem; line-height: 1.4; }
   .founders img, .studio-space img { display: block; width: 100%; height: auto; }
   .studio-contact { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 6.45%; }
   .contact-rule { flex: 1; border-top: 1px solid var(--color-line); }

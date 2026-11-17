@@ -21,6 +21,9 @@
   .eyebrow { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; }
   .section-space { padding-block: clamp(2.5rem, 5vw, 5rem); }
   .section-heading { font-size: var(--text-editorial); line-height: 1.08; font-weight: 300; }
+  /* Short fine rule under an eyebrow or title, as in the November 2026 mockups. */
+  .title-rule::after { content: ''; display: block; width: 1.75rem; margin-top: .75rem; border-top: 1px solid var(--color-ink); opacity: .45; }
+  .title-rule.text-center::after { margin-inline: auto; }
   @media (min-width: 768px) {
     .page-width { width: min(100% - 6rem, 88rem); }
   }

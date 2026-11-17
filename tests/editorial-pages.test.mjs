@@ -107,6 +107,7 @@ test('studio presents approved philosophy, team portraits and collaborator artwo
   }
   assert.doesNotMatch(studio, /Imagen pendiente|Logotipos pendientes/);
   assert.ok(text(studio).includes('Nosotras'));
+  assert.ok(text(studio).includes('Equipo') && !text(studio).includes('El equipo'));
   assert.ok(text(studio).includes('Nuestra filosofía'));
   assert.ok(text(studio).includes('Nuestro estudio'));
 });
