@@ -2,7 +2,7 @@
 
 Independent **e estudio** architecture website, built with Astro, strict TypeScript and Tailwind CSS 4. The intended repository is [mocklabapp/e-estudio-landing](https://github.com/mocklabapp/e-estudio-landing.git); this records the destination, not publication or deployment approval. The project originated from base-landing-mocklab but is no longer a reusable starter or client generator.
 
-Resume from [the handoff](docs/e-estudio-handoff.md), [the client brief](docs/project-brief.md) and [the client change/release checklist](docs/project-kickoff.md). Preserve the approved design and existing client work. Supplied branding and editorial images are applied; system fonts remain provisional. Contact is a no-send/no-storage demonstration. Participation, signup and voting remain excluded.
+Resume from [the handoff](docs/e-estudio-handoff.md), [the client brief](docs/project-brief.md) and [the client change/release checklist](docs/project-kickoff.md). Preserve the approved design and existing client work. Supplied branding and editorial images are applied; system fonts remain provisional. Contact and the Living Research interest form are no-send/no-storage demonstrations. Signup and voting remain excluded. Brief status: [November 2026 adjustments](docs/e-estudio-brief-nov-2026.md).
 
 ## Current site
 
