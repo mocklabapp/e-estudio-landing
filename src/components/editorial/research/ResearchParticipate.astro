@@ -6,30 +6,36 @@ const t = localize(locale, researchCatalan);
 ---
 
 <!-- No-send, no-storage demo like Contact: real delivery needs an approved provider, recipient and privacy text. -->
-<section id="research-participate" class="page-width section-space" aria-labelledby="research-participate-title">
-  <div class="mx-auto max-w-2xl">
-    <h2 id="research-participate-title" class="section-heading mb-8 font-serif">{t('Cuéntanos qué te interesa')}</h2>
-    <div data-interest-preview data-locale={locale} role="form" aria-labelledby="research-participate-title" aria-describedby="interest-demo-notice">
-      <p id="interest-demo-notice" class="mb-4 text-sm text-muted">
+<section id="research-participate" class="border-t border-line bg-surface section-space" aria-labelledby="research-participate-title">
+  <div class="page-width grid gap-10 md:grid-cols-2 md:gap-20">
+    <div>
+      <h2 id="research-participate-title" class="section-heading title-rule max-w-md font-serif">{t('Cuéntanos qué te interesa')}</h2>
+      <p class="mt-8 max-w-md leading-relaxed text-muted">
+        {t('Si tienes un tema o una experiencia que te gustaría compartir, déjanos tu mensaje.')}
+      </p>
+    </div>
+    <div data-interest-preview data-locale={locale} role="form" aria-labelledby="research-participate-title" aria-describedby="interest-demo-notice" class="max-w-xl">
+      <p id="interest-demo-notice" class="mb-2 text-sm text-muted">
         {t('Formulario de demostración. No se envían ni guardan datos.')}
       </p>
       <p class="mb-8 text-sm text-muted">{t('Todos los campos son obligatorios. Usa datos de prueba.')}</p>
-      <div class="grid gap-7">
+      <!-- Labels stay for assistive technology; the visible hint is the placeholder, as in the mockup. -->
+      <div class="grid gap-4">
         <div class="field">
-          <label for="interest-name">{t('Nombre')}</label>
-          <input id="interest-name" type="text" autocomplete="off" maxlength="120" required />
+          <label for="interest-name" class="sr-only">{t('Nombre')}</label>
+          <input id="interest-name" type="text" autocomplete="off" maxlength="120" required placeholder={t('Nombre')} />
         </div>
         <div class="field">
-          <label for="interest-email">{t('Email')}</label>
-          <input id="interest-email" type="email" autocomplete="off" maxlength="160" required />
+          <label for="interest-email" class="sr-only">{t('Email')}</label>
+          <input id="interest-email" type="email" autocomplete="off" maxlength="160" required placeholder={t('Email')} />
         </div>
         <div class="field">
-          <label for="interest-message">{t('Mensaje')}</label>
-          <textarea id="interest-message" rows="5" autocomplete="off" maxlength="3000" required></textarea>
+          <label for="interest-message" class="sr-only">{t('Mensaje')}</label>
+          <textarea id="interest-message" rows="5" autocomplete="off" maxlength="3000" required placeholder={t('Tu mensaje…')}></textarea>
         </div>
       </div>
-      <button id="interest-simulate" type="button" disabled class="mt-8 inline-flex min-h-12 items-center gap-8 border border-ink bg-ink text-on-brand px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50">
-        {t('Simular envío')} <span aria-hidden="true">↗</span>
+      <button id="interest-simulate" type="button" disabled class="mt-8 inline-flex min-h-12 items-center gap-8 border border-ink px-6 py-3 text-sm text-ink hover:bg-ink hover:text-on-brand disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-ink">
+        {t('Simular envío')} <span aria-hidden="true">⟶</span>
       </button>
       <p id="interest-status" role="status" aria-live="polite" aria-atomic="true" class="mt-4 min-h-12 text-sm"></p>
       <noscript>
@@ -48,8 +54,7 @@ const t = localize(locale, researchCatalan);
 </script>
 
 <style>
-  .field { display: grid; gap: 0.75rem; }
-  label { font-size: 0.875rem; }
+  .field { display: grid; }
   input, textarea {
     width: 100%;
     min-height: 3rem;
@@ -59,6 +64,7 @@ const t = localize(locale, researchCatalan);
     color: var(--color-ink);
     border-radius: 0;
   }
+  input::placeholder, textarea::placeholder { color: var(--color-muted); opacity: 1; }
   textarea { resize: vertical; }
   [aria-invalid='true'] { border-bottom-color: var(--color-ink); border-bottom-width: 2px; }
 </style>

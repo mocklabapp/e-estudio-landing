@@ -5,19 +5,32 @@ import { researchCatalan } from '@/data/localized/research';
 const t = localize(Astro.currentLocale, researchCatalan);
 ---
 
-<section aria-labelledby="research-hero">
-  <div class="page-width py-12 md:py-20">
-    <p class="eyebrow mb-8">Living Research</p>
-    <h1 id="research-hero" class="max-w-4xl font-serif text-display font-light leading-tight">
-      {t('La forma de habitar está cambiando.')}
-    </h1>
-    <p class="mt-8 max-w-xl text-lg leading-relaxed">
-      {t('Vivimos más años. Las familias ya no responden a un modelo único. Cada vez más personas viven solas. Trabajamos y nos relacionamos de otra manera.')}
-    </p>
-    <p class="mt-6 max-w-xl leading-relaxed text-muted">
-      {t('En e estudio investigamos nuevas formas de habitar, conectando arquitectura, personas y conocimiento para explorar modelos de vivienda que respondan mejor a las necesidades actuales.')}
-    </p>
+<section class="relative isolate overflow-hidden" aria-labelledby="research-hero">
+  <div class="page-width relative z-10 py-12 md:flex md:min-h-[28rem] md:items-center md:py-20">
+    <div class="md:w-1/2">
+      <p class="eyebrow title-rule mb-8 text-muted">Living Research</p>
+      <h1 id="research-hero" class="max-w-xl font-serif text-display font-light leading-tight">
+        {t('La forma de habitar está cambiando.')}
+      </h1>
+      <p class="mt-8 max-w-md leading-relaxed text-muted">
+        {t('Vivimos más años. Las familias ya no responden a un modelo único. Cada vez más personas viven solas. Trabajamos y nos relacionamos de otra manera.')}
+      </p>
+      <p class="mt-6 max-w-md leading-relaxed text-muted">
+        {t('En e estudio investigamos nuevas formas de habitar, conectando arquitectura, personas y conocimiento para explorar modelos de vivienda que respondan mejor a las necesidades actuales.')}
+      </p>
+    </div>
   </div>
-  <!-- The supplied crop is small (343 × 328): it is cropped, not enlarged in height, across the band. -->
-  <ResearchPhoto name="hero-photo-clean-crop" eager fit="band" />
+  <!-- The supplied crop is small (343 × 328): it is cropped and enlarged, fading into the page, never distorted. -->
+  <div class="hero-photo md:absolute md:inset-y-0 md:right-0 md:w-3/5">
+    <ResearchPhoto name="hero-photo-clean-crop" eager fit="fill" />
+  </div>
 </section>
+
+<style>
+  .hero-photo {
+    mask-image: linear-gradient(to bottom, transparent, black 35%);
+  }
+  @media (min-width: 768px) {
+    .hero-photo { mask-image: linear-gradient(to right, transparent, black 45%); }
+  }
+</style>

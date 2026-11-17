@@ -11,20 +11,20 @@ const modelPhotos = [
 ] as const;
 ---
 
-<section class="bg-surface section-space" aria-labelledby="research-models">
+<section class="section-space" aria-labelledby="research-models">
   <div class="page-width">
-    <p class="eyebrow mb-8">{t('Descubrir')}</p>
-    <h2 id="research-models" class="section-heading mb-12 max-w-4xl font-serif">
+    <p class="eyebrow title-rule mb-8 text-muted">{t('Descubrir')}</p>
+    <h2 id="research-models" class="section-heading mb-12 max-w-3xl font-serif">
       {t('¿Conoces todas las formas en las que podemos vivir?')}
     </h2>
     <ul class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
       {housingModels.map((model, index) => (
         <li>
           <ResearchPhoto name={modelPhotos[index]} />
-          <h3 class="mt-5 break-words font-serif text-2xl font-light">{t(model)}</h3>
+          <h3 class="title-rule mt-5 break-words font-serif text-xl font-light">{t(model)}</h3>
           <!-- Native disclosure: keyboard accessible, no client JavaScript. -->
-          <details class="mt-4 border-t border-line pt-3">
-            <summary class="cursor-pointer py-2 text-sm">
+          <details class="mt-4">
+            <summary class="cursor-pointer py-2 text-sm text-muted">
               {t('Qué es')}<span class="sr-only"> {t(model)}</span>
             </summary>
             <p class="mt-2 text-sm leading-relaxed text-muted">{t(housingModelDefinitions[model])}</p>

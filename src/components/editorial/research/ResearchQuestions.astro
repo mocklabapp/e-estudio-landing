@@ -1,4 +1,5 @@
 ---
+import ResearchLink from '@/components/editorial/research/ResearchLink.astro';
 import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
 import { researchQuestions } from '@/data/editorial';
 import { localize } from '@/data/localized/locale';
@@ -10,15 +11,25 @@ const questionPhotos = [
 ] as const;
 ---
 
-<section class="page-width section-space" aria-labelledby="research-questions">
-  <h2 id="research-questions" class="section-heading mb-10 font-serif">{t('Investiguemos juntos')}</h2>
-  <div class="grid gap-10 md:grid-cols-3">
-    {researchQuestions.map((question, index) => (
-      <div>
-        <ResearchPhoto name={questionPhotos[index]} />
-        <p class="eyebrow mt-6 text-muted">LR0{index + 1}</p>
-        <h3 class="mt-3 font-serif text-3xl leading-tight">{t(question)}</h3>
-      </div>
-    ))}
+<section class="border-t border-line bg-surface section-space" aria-labelledby="research-questions">
+  <div class="page-width">
+    <div class="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-start md:justify-between">
+      <h2 id="research-questions" class="eyebrow title-rule text-muted">{t('Investiguemos juntos')}</h2>
+      <p class="max-w-56 text-sm leading-relaxed text-muted md:text-right">{t('2 - 3 encuentros al año para investigar juntos.')}</p>
+    </div>
+    <div class="grid gap-12 md:grid-cols-3 md:gap-0">
+      {researchQuestions.map((item, index) => (
+        <article class="flex flex-col md:border-l md:border-line md:px-8 md:first:border-l-0 md:first:pl-0 md:last:pr-0">
+          <ResearchPhoto name={questionPhotos[index]} class="aspect-2/1 object-cover" />
+          <p class="eyebrow mt-6 text-muted">LR 0{index + 1}</p>
+          <h3 class="mt-3 font-serif text-2xl font-light leading-tight">{t(item.question)}</h3>
+          <p class="mt-4 text-sm leading-relaxed text-muted">{t(item.description)}</p>
+          <p class="mt-6 text-sm text-muted">{t(item.meeting)}</p>
+          <div class="mt-3">
+            <ResearchLink href="#research-participate" label={t('Me interesa participar')} />
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

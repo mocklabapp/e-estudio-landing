@@ -54,17 +54,36 @@ export const housingModelDefinitions = {
     'Otras fórmulas de vivienda que combinan espacio privado y compartido de maneras distintas a los modelos más habituales.',
 } as const satisfies Record<(typeof housingModels)[number], string>;
 
-// Editorial questions only, coded LR01-LR03 on the page: dates, descriptions and links are pending from the client.
+interface ResearchQuestion {
+  question: string;
+  /** LR01's last sentence is illegible in the mockup and omitted until the client supplies it. */
+  description: string;
+  meeting: string;
+}
+
+// Questions, descriptions and meeting seasons transcribed from the Nov 2026 mockup (S20); no links of their own.
 export const researchQuestions = [
-  '¿Cómo queremos vivir cuando seamos mayores?',
-  '¿Cómo vivirán nuestros hijos?',
-  '¿Qué posibilidades ofrecen los espacios que ya tenemos?',
-] as const;
+  {
+    question: '¿Cómo queremos vivir cuando seamos mayores?',
+    description: 'Vivimos más años y queremos mantener nuestra autonomía durante más tiempo. ¿Qué necesitamos para seguir viviendo bien?',
+    meeting: 'Encuentro · otoño 2026',
+  },
+  {
+    question: '¿Cómo vivirán nuestros hijos?',
+    description: 'El acceso a la vivienda está transformando la etapa de la juventud. Queremos investigar qué modelos residenciales pueden responder a esta nueva realidad.',
+    meeting: 'Encuentro · invierno 2026',
+  },
+  {
+    question: '¿Qué posibilidades ofrecen los espacios que ya tenemos?',
+    description: 'Masías, grandes casas unifamiliares, edificios industriales, hoteles… ¿Podrían albergar nuevas formas de convivencia sin perder su identidad?',
+    meeting: 'Encuentro · primavera 2027',
+  },
+] as const satisfies readonly ResearchQuestion[];
 
 export const researchMethod = [
-  'Preguntar',
-  'Conversar',
-  'Investigar',
-  'Explorar',
-  'Hacer posible',
+  { title: 'Preguntar', description: 'Detectamos una necesidad o un cambio.' },
+  { title: 'Conversar', description: 'Reunimos a personas y especialistas.' },
+  { title: 'Investigar', description: 'Analizamos, aprendemos, compartimos.' },
+  { title: 'Explorar', description: 'Desarrollamos posibles respuestas arquitectónicas.' },
+  { title: 'Hacer posible', description: 'Si surge la oportunidad, lo convertimos en un proyecto real.' },
 ] as const;
