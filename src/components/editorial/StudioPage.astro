@@ -41,8 +41,11 @@ const t = localize(locale, studioCatalan);
     alt={t('Las fundadoras trabajando juntas en el estudio')} loading="eager" decoding="async" />
 </section>
 
+<hr class="studio-divider" />
 <StudioTeam />
+<hr class="studio-divider" />
 <StudioCollaborators />
+<hr class="studio-divider" />
 
 <section class="studio-space" aria-labelledby="studio-space">
   <div class="space-copy">
@@ -58,7 +61,7 @@ const t = localize(locale, studioCatalan);
 <section class="studio-contact" aria-labelledby="studio-contact">
   <div class="contact-rule" aria-hidden="true"></div>
   <h2 id="studio-contact" class="font-light">
-    <a href={pagePath('contact', locale)} class="contact-link text-sm">{t('Contacto')}</a>
+    <a href={pagePath('contact', locale)} class="contact-link text-sm"><span>{t('Contacto')}</span><span aria-hidden="true">⟶</span></a>
   </h2>
 </section>
 
@@ -79,10 +82,13 @@ const t = localize(locale, studioCatalan);
   .founders img, .studio-space img { display: block; width: 100%; height: auto; }
   .studio-contact { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 6.45%; }
   .contact-rule { flex: 1; border-top: 1px solid var(--color-line); }
+  /* Fine rules between Studio blocks, as in the reference composition. */
+  .studio-divider { margin: 0 6.45%; border: 0; border-top: 1px solid var(--color-line); }
   .contact-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
     min-height: 2.75rem;
     min-width: 9.25rem;
     padding: .5rem 1.5rem;

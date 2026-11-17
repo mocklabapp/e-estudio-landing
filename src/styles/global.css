@@ -19,7 +19,7 @@
 @layer components {
   .page-width { width: min(100% - 3rem, 88rem); margin-inline: auto; }
   .eyebrow { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; }
-  .section-space { padding-block: clamp(3rem, 6vw, 6rem); }
+  .section-space { padding-block: clamp(2.5rem, 5vw, 5rem); }
   .section-heading { font-size: var(--text-editorial); line-height: 1.08; font-weight: 300; }
   @media (min-width: 768px) {
     .page-width { width: min(100% - 6rem, 88rem); }

@@ -8,8 +8,8 @@ import ContactMap from '@/components/contact/ContactMap.astro';
 ---
 <section class="grid items-center md:grid-cols-2" aria-labelledby="contact-title">
   <div class="contact-intro section-space">
-    <p class="eyebrow mb-8">{t('Contacto')}</p>
-    <h1 id="contact-title" class="mb-10 max-w-xl font-serif text-display leading-none">
+    <p class="eyebrow mb-6">{t('Contacto')}</p>
+    <h1 id="contact-title" class="mb-8 max-w-xl font-serif text-editorial font-light leading-tight">
       {t('Estamos en la')} <span class="text-brand">Casa Bot.</span>
     </h1>
     <p class="max-w-md text-base leading-relaxed text-muted">
@@ -24,7 +24,7 @@ import ContactMap from '@/components/contact/ContactMap.astro';
   />
 </section>
 
-<div class="page-width section-space grid gap-16 border-t border-line md:grid-cols-2 md:gap-20">
+<div class="page-width section-space grid gap-12 border-t border-line md:grid-cols-2 md:gap-16">
   <ContactForm />
   <ContactLocation />
 </div>
