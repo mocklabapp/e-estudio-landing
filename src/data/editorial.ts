@@ -39,17 +39,26 @@ export const housingModels = [
   'Otras formas de habitar',
 ] as const;
 
-// Editorial questions only: no dates, events, participation or voting actions.
-export const researchQuestions = [
-  '¿Cómo queremos vivir cuando seamos mayores?',
-  '¿Cómo vivirán nuestros hijos?',
-  '¿Qué posibilidades ofrecen los espacios que ya tenemos?',
-] as const;
+/**
+ * DRAFT explanations pending client validation (brief L4): neutral, general
+ * definitions only, with no claims about e estudio. Keys match `housingModels`.
+ */
+export const housingModelDefinitions = {
+  'Cohousing':
+    'Comunidad de viviendas privadas con espacios compartidos, cuya vida cotidiana se organiza entre quienes la habitan.',
+  'Coliving':
+    'Forma de vivir en la que cada persona dispone de un espacio propio y comparte zonas comunes, como la cocina o la sala de estar.',
+  'Comunidades intergeneracionales':
+    'Entornos residenciales donde conviven personas de distintas edades y se favorece el apoyo mutuo entre generaciones.',
+  'Otras formas de habitar':
+    'Otras fórmulas de vivienda que combinan espacio privado y compartido de maneras distintas a los modelos más habituales.',
+} as const satisfies Record<(typeof housingModels)[number], string>;
+
 
 export const researchMethod = [
-  'Preguntar',
-  'Conversar',
-  'Investigar',
-  'Explorar',
-  'Hacer posible',
+  { title: 'Preguntar', description: 'Detectamos una necesidad o un cambio.' },
+  { title: 'Conversar', description: 'Reunimos a personas y especialistas.' },
+  { title: 'Investigar', description: 'Analizamos, aprendemos, compartimos.' },
+  { title: 'Explorar', description: 'Desarrollamos posibles respuestas arquitectónicas.' },
+  { title: 'Hacer posible', description: 'Si surge la oportunidad, lo convertimos en un proyecto real.' },
 ] as const;

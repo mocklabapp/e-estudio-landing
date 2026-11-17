@@ -39,6 +39,12 @@ test('ES/CA editorial routes and equivalent navbar links preserve the client she
   assert.match(contact, /mailto:hola@eestudiohabitar.com/);
   assert.match(contact, /tel:\+34615123456/);
   assert.match(contact, /Simular l’enviament/);
+  for (const text of [
+    'Si tens una idea, una pregunta o vols formar part d’algun dels nostres projectes, pots deixar-nos el teu missatge. Et respondrem tan aviat com puguem.',
+    'placeholder="El teu nom"', 'placeholder="El teu correu electrònic o telèfon"', 'placeholder="Explica’ns…"',
+    'Horari', 'Just a sobre d’El Melindró.', 'Parlem-ne.',
+  ]) assert.ok(contact.includes(text), `Catalan contact copy: ${text}`);
+  assert.match(contact, /<label[^>]*for="contact-name"[^>]*>\s*Nom\s*<span aria-hidden="true"[^>]*>\*<\/span>/);
   assert.doesNotMatch(contact, /<form\b|\baction=/);
 });
 

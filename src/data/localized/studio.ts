@@ -14,7 +14,7 @@ export const studioCatalan = {
   'conversación.': 'conversa.',
   'Mesa de reuniones junto a la biblioteca del estudio': 'Taula de reunions al costat de la biblioteca de l’estudi',
   'Contacto': 'Contacte',
-  'El equipo': 'L’equip',
+  'Equipo': 'Equip',
   'Retrato de': 'Retrat de',
   'Clientes y colaboradores': 'Clients i col·laboradors',
   'Espacio': 'Espai',

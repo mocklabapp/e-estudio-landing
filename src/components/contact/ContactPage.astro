@@ -8,9 +8,9 @@ import ContactMap from '@/components/contact/ContactMap.astro';
 ---
 <section class="grid items-center md:grid-cols-2" aria-labelledby="contact-title">
   <div class="contact-intro section-space">
-    <p class="eyebrow mb-8">{t('Contacto')}</p>
-    <h1 id="contact-title" class="mb-10 max-w-xl font-serif text-display leading-none">
-      {t('Estamos en la')} <span class="text-brand">Casa Bot.</span>
+    <p class="eyebrow title-rule mb-10">{t('Contacto')}</p>
+    <h1 id="contact-title" class="mb-8 max-w-md font-serif text-editorial font-light leading-tight">
+      {t('Estamos en')}<br />{t('la')} <span class="text-brand">Casa Bot.</span>
     </h1>
     <p class="max-w-md text-base leading-relaxed text-muted">
       {t('Nuestro estudio se encuentra en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu, justo encima de El Melindró.')}
@@ -24,9 +24,9 @@ import ContactMap from '@/components/contact/ContactMap.astro';
   />
 </section>
 
-<div class="page-width section-space grid gap-16 border-t border-line md:grid-cols-2 md:gap-20">
-  <ContactForm />
-  <ContactLocation />
+<div class="page-width section-space grid gap-12 border-t border-line md:grid-cols-2 md:gap-0">
+  <div class="md:pr-16"><ContactForm /></div>
+  <div class="md:border-l md:border-line md:pl-16"><ContactLocation /></div>
 </div>
 
 <section class="grid md:grid-cols-2" aria-label={t('El estudio y su ubicación')}>

@@ -10,11 +10,11 @@ const t = localize(locale, servicesCatalan);
 const contact = pagePath('contact', locale);
 ---
 
-<section class="page-width py-16 md:py-24">
-  <h1 class="font-serif text-display font-light leading-tight">{t('Servicios')}</h1>
+<section class="page-width py-12 md:py-16">
+  <h1 class="title-rule font-serif text-display font-light leading-tight">{t('Servicios')}</h1>
 </section>
 
-<section class="page-width pb-24" aria-label={t('Servicios de arquitectura')}>
+<section class="page-width pb-16 md:pb-20" aria-label={t('Servicios de arquitectura')}>
   <div class="grid gap-8 md:grid-cols-2">
     <section class="flex flex-col" aria-labelledby="service-inhabit">
       <img
@@ -25,14 +25,14 @@ const contact = pagePath('contact', locale);
         class="service-image"
         decoding="async"
       />
-      <h2 id="service-inhabit" class="mt-10 font-serif text-editorial font-light">{t('habitar')}</h2>
-      <p class="mt-8 max-w-sm text-xl">{t('Para quienes quieren construir o transformar su hogar.')}</p>
-      <ul class="mt-10 divide-y divide-line border-y border-line text-sm">
+      <h2 id="service-inhabit" class="title-rule mt-10 font-serif text-editorial font-light">{t('habitar')}</h2>
+      <p class="mt-6 max-w-sm font-serif text-xl text-muted">{t('Para quienes quieren construir o transformar su hogar.')}</p>
+      <ul class="mt-8 divide-y divide-line border-y border-line font-serif text-base text-muted">
         <li class="py-4">{t('Obra nueva')}</li>
         <li class="py-4">{t('Rehabilitación')}</li>
         <li class="py-4">{t('Ampliaciones y reformas')}</li>
       </ul>
-      <div class="mt-auto pt-12"><ArrowLink href={contact} label={t('Hablemos de tu hogar')} /></div>
+      <div class="mt-auto pt-10"><ArrowLink href={contact} label={t('Hablemos de tu hogar')} /></div>
     </section>
     <section class="flex flex-col" aria-labelledby="service-develop">
       <img
@@ -43,9 +43,9 @@ const contact = pagePath('contact', locale);
         class="service-image"
         decoding="async"
       />
-      <h2 id="service-develop" class="mt-10 font-serif text-editorial font-light">{t('promover')}</h2>
-      <p class="mt-8 max-w-sm text-xl">{t('Para quienes quieren desarrollar proyectos residenciales.')}</p>
-      <div class="mt-auto pt-12"><ArrowLink href={contact} label={t('Hablemos de tu proyecto')} /></div>
+      <h2 id="service-develop" class="title-rule mt-10 font-serif text-editorial font-light">{t('promover')}</h2>
+      <p class="mt-6 max-w-sm font-serif text-xl text-muted">{t('Para quienes quieren desarrollar proyectos residenciales.')}</p>
+      <div class="mt-auto pt-10"><ArrowLink href={contact} label={t('Hablemos de tu proyecto')} /></div>
     </section>
   </div>
 </section>
@@ -53,13 +53,13 @@ const contact = pagePath('contact', locale);
 <section class="page-width section-space border-t border-line" aria-labelledby="services-living">
   <div class="mx-auto max-w-3xl text-center">
     <BrandMark variant="living" />
-    <h2 id="services-living" class="section-heading mt-12 font-serif">{t('¿Buscas una vivienda terminada?')}</h2>
-    <p class="mt-8 text-lg">{t('Descubre e living, nuestra propuesta inmobiliaria.')}</p>
-    <div class="mt-10"><ArrowLink href={contact} label={t('Preguntar por e living')} /></div>
+    <h2 id="services-living" class="mt-10 font-serif text-3xl font-light leading-tight md:text-4xl">{t('¿Buscas una vivienda terminada?')}</h2>
+    <p class="mt-4 font-serif text-lg text-muted">{t('Descubre e living, nuestra propuesta inmobiliaria.')}</p>
+    <div class="mt-8"><ArrowLink href={contact} label={t('Preguntar por e living')} /></div>
   </div>
 </section>
 
-<ContactBand title={t('Vivir es una elección.')} accent="" />
+<ContactBand eyebrow={t('¿Hablamos?')} accent={t('Vivir')} accentPosition="start" title={t('es una elección.')} />
 
 <style>
   .service-image {

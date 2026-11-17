@@ -1,8 +1,8 @@
 ---
 import { localize } from '@/data/localized/locale';
 import { contactCatalan } from '@/data/localized/contact';
+import { studioAddress as address } from '@/config/contact';
 const t = localize(Astro.currentLocale, contactCatalan);
-const address = 'Plaça de l’Església, 23, 08440 Cardedeu, Barcelona';
 const destination = encodeURIComponent(address);
 ---
 <figure class="flex min-w-0 flex-col justify-center bg-surface p-6 text-ink md:px-8">

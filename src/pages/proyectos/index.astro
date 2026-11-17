@@ -26,14 +26,14 @@ if (unavailable) Astro.response.status = 503;
   <SiteHeader page={page} />
   <main id="main-content">
     <section class="page-width section-space">
-      <h1 class="section-heading mb-12">{t('Proyectos')}</h1>
+      <h1 class="section-heading title-rule mb-12">{t('Proyectos')}</h1>
       {unavailable ? <p role="status" class="max-w-xl py-12 text-muted">{t('No podemos mostrar los proyectos en este momento. Inténtalo de nuevo más tarde.')}</p> :
         projects.length === 0 ? <p class="py-12 text-muted">{t('Todavía no hay proyectos disponibles.')}</p> :
         <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => <ProjectCard project={project} />)}
         </div>}
     </section>
-    <ContactBand title={t('Cada proyecto,')} accent={t('una forma de habitar.')} eyebrow={t('¿Hablamos?')} />
+    <ContactBand title={t('Cada proyecto,')} accent={t('una forma de habitar.')} eyebrow={t('¿Hablamos?')} font="sans" />
   </main>
   <SiteFooter />
 </BaseLayout>

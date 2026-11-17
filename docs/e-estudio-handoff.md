@@ -4,7 +4,7 @@ This is the independent **e-estudio-landing** client preview, **not a visually f
 
 ## Start here
 
-1. Read `AGENTS.md`, this file, [the client brief](project-brief.md) and [the feature tasks/log](../odd/tasks/e-estudio-preview.md).
+1. Read `AGENTS.md`, this file, [the client brief](project-brief.md), [the November 2026 adjustment status](e-estudio-brief-nov-2026.md) and [the feature tasks/log](../odd/tasks/e-estudio-preview.md).
 2. Read the relevant [Home](../odd/tasks/e-estudio-home.md), [ES/CA](../odd/tasks/e-estudio-es-ca.md) and [cleanup](../odd/tasks/e-estudio-repository-cleanup.md) task records. Reconcile historical evidence with current files and Git status; preserve newer work.
 3. Shared backend maintenance is external. This repository retains only the web consumer and its controls; do not recreate SQL/Edge sources here.
 4. Confirm the requested client slice using [the change/release checklist](project-kickoff.md). Reading this handoff does not authorize deployment, sensitive operations or retrying a previously blocked verifier.

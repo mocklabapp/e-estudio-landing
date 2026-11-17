@@ -1,6 +1,7 @@
 export const contactCatalan = {
   'Contacto': 'Contacte',
-  'Estamos en la': 'Som a la',
+  'Estamos en': 'Som a',
+  'la': 'la',
   'Nuestro estudio se encuentra en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu, justo encima de El Melindró.':
     'El nostre estudi és a la primera planta de la Casa Antoni Clavell Bot, al cor de Cardedeu, just a sobre d’El Melindró.',
   'Fachada de la Casa Antoni Clavell Bot, con El Melindró en la planta baja': 'Façana de la Casa Antoni Clavell Bot, amb El Melindró a la planta baixa',
@@ -9,7 +10,11 @@ export const contactCatalan = {
   'Escríbenos': 'Escriu-nos',
   'Hablemos.': 'Parlem-ne.',
   'Formulario de demostración. No se envían ni guardan datos.': 'Formulari de demostració. No s’envien ni es guarden dades.',
-  'Todos los campos son obligatorios. Usa datos de prueba.': 'Tots els camps són obligatoris. Fes servir dades de prova.',
+  'Si tienes una idea, una pregunta o quieres formar parte de alguno de nuestros proyectos, puedes dejarnos tu mensaje. Te responderemos lo antes posible.':
+    'Si tens una idea, una pregunta o vols formar part d’algun dels nostres projectes, pots deixar-nos el teu missatge. Et respondrem tan aviat com puguem.',
+  'Tu nombre': 'El teu nom',
+  'Tu email o teléfono': 'El teu correu electrònic o telèfon',
+  'Cuéntanos…': 'Explica’ns…',
   'Nombre': 'Nom',
   'Email o teléfono': 'Correu electrònic o telèfon',
   '¿Sobre qué quieres hablar?': 'De què vols parlar?',
@@ -22,7 +27,6 @@ export const contactCatalan = {
   'Activa JavaScript para probar la simulación. No se envían ni guardan datos.': 'Activa JavaScript per provar la simulació. No s’envien ni es guarden dades.',
   'Ven a vernos': 'Vine a veure’ns',
   'Justo encima de El Melindró.': 'Just a sobre d’El Melindró.',
-  'Estamos en la primera planta de la Casa Antoni Clavell Bot, en el corazón de Cardedeu.': 'Som a la primera planta de la Casa Antoni Clavell Bot, al cor de Cardedeu.',
   'Horario': 'Horari',
   'De lunes a viernes': 'De dilluns a divendres',
   'Con cita previa.': 'Amb cita prèvia.',

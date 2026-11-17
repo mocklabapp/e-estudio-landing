@@ -5,7 +5,7 @@
 - This is the independent e estudio website, not a client generator. The intended destination is `https://github.com/mocklabapp/e-estudio-landing.git`; do not infer publication, remote changes or deployment authorization.
 - Read [the handoff](docs/e-estudio-handoff.md), [the working brief](docs/project-brief.md) and [the change/release checklist](docs/project-kickoff.md). Resume the requested slice without restarting client discovery or overwriting existing work.
 - Reuse approved design, palette, supplied artwork and ES/CA content. Ask only 1–3 relevant unresolved questions in the human's language, then wait. Record changed decisions separately from proposals and pending items; preserve historical evidence.
-- Contact remains a no-send/no-storage demo; participation, signup and voting are excluded. Fonts remain provisional. Design approval does not authorize launch or live personal-data collection.
+- Contact remains a no-send/no-storage demo; signup and voting are excluded. The November 2026 brief added one Living Research «Cuéntanos qué te interesa» form, also a no-send/no-storage demo; see [the brief status](docs/e-estudio-brief-nov-2026.md). Fonts remain provisional. Design approval does not authorize launch or live personal-data collection.
 - Before modifying live portfolio access, read [the consumer contract and change checklist](docs/projects.md). Keep the fixed owner, public fields/states, ES/CA whole-original fallback and no-store behavior; never record credentials in documentation.
 - Shared backend sources, SQL and exclusive service tests are maintained elsewhere. Do not recreate that backend or rerun a starter initializer in this client.
 

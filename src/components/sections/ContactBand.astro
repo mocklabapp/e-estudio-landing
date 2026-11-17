@@ -5,12 +5,34 @@ import { shellCatalan } from '@/data/localized/shell';
 import { pagePath } from '@/lib/localized-routes';
 const locale = clientLocale(Astro.currentLocale);
 const t = localize(locale, shellCatalan);
-interface Props { title?: string; accent?: string; eyebrow?: string }
-const { title = t('Habitar empieza'), accent = t('con una conversación.'), eyebrow = t('Empezamos a hablar') } = Astro.props;
+interface Props {
+  /** Plain heading text; `\n` starts a new line. */
+  title?: string;
+  /** Fragment in the accent colour. */
+  accent?: string;
+  /** `line`: own line after the title; `start`/`end`: inline before/after the title text. */
+  accentPosition?: 'line' | 'start' | 'end';
+  eyebrow?: string;
+  font?: 'serif' | 'sans';
+}
+const {
+  title = t('Habitar empieza'), accent = t('con una conversación.'), accentPosition = 'line',
+  eyebrow = t('Empezamos a hablar'), font = 'serif',
+} = Astro.props;
+const lines = title.split('\n');
+const last = lines.length - 1;
 ---
 <section class="bg-surface section-space">
   <div class="page-width flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-    <div><p class="eyebrow mb-6">{eyebrow}</p><h2 class="section-heading font-serif">{title}<br /><span class="text-brand">{accent}</span></h2></div>
+    <div>
+      <p class="eyebrow title-rule mb-6">{eyebrow}</p>
+      <h2 class:list={['section-heading', font === 'serif' ? 'font-serif' : 'font-sans']}>
+        {accentPosition === 'start' && <Fragment><span class="text-brand">{accent}</span>{' '}</Fragment>}
+        {lines.map((line, index) => <Fragment>{line}{index < last ? <br /> : null}</Fragment>)}
+        {accentPosition === 'end' && <Fragment>{' '}<span class="text-brand">{accent}</span></Fragment>}
+        {accentPosition === 'line' && <Fragment><br /><span class="text-brand">{accent}</span></Fragment>}
+      </h2>
+    </div>
     <div><ArrowLink href={pagePath('contact', locale)} label={t('Contacto')} outlined /></div>
   </div>
 </section>

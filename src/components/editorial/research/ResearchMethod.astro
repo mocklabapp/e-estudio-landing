@@ -1,4 +1,5 @@
 ---
+import ResearchLink from '@/components/editorial/research/ResearchLink.astro';
 import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
 import { researchMethod } from '@/data/editorial';
 import { localize } from '@/data/localized/locale';
@@ -11,34 +12,44 @@ const t = localize(Astro.currentLocale, researchCatalan);
 <section class="page-width section-space" aria-labelledby="research-method">
   <div class="grid gap-12 md:grid-cols-2 md:gap-20">
     <div>
+      <p class="eyebrow title-rule mb-8 text-muted">{t('El método')}</p>
       <h2 id="research-method" class="section-heading max-w-xl font-serif">
         {t('De la conversación a la realidad.')}
       </h2>
-      <p class="mt-8 max-w-lg text-lg leading-relaxed text-muted">
-        {t('Cada investigación nace de una pregunta abierta y se construye en común.')}
+      <p class="mt-8 max-w-lg leading-relaxed text-muted">
+        {t('Cada investigación nace de una pregunta abierta y se construye en común. La conversación genera conocimiento, y el conocimiento nos acerca a respuestas arquitectónicas que pueden hacerse realidad.')}
       </p>
     </div>
-    <ol>
+    <!-- Three steps on the first row and two on the second from md, as in the mockup. -->
+    <ol class="grid content-center gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3">
       {researchMethod.map((step, index) => (
-        <li class="flex items-baseline gap-6 border-t border-line py-5 last:border-b">
-          <span class="eyebrow shrink-0 text-muted" aria-hidden="true">0{index + 1}</span>
-          <h3 class="font-serif text-3xl font-light">{t(step)}</h3>
+        <li>
+          <span class="eyebrow text-muted" aria-hidden="true">0{index + 1}</span>
+          <div class="mt-2 flex items-center justify-between gap-3">
+            <h3 class="text-base">{t(step.title)}</h3>
+            <span aria-hidden="true">⟶</span>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{t(step.description)}</p>
         </li>
       ))}
     </ol>
   </div>
 </section>
 
-<section class="bg-surface section-space" aria-labelledby="research-community">
+<section class="section-space" aria-labelledby="research-community">
   <div class="page-width grid items-center gap-10 md:grid-cols-2 md:gap-20">
     <ResearchPhoto name="outdoor-community" />
     <div>
+      <p class="eyebrow title-rule mb-6 text-muted">{t('La comunidad')}</p>
       <h2 id="research-community" class="section-heading font-serif">
-        {t('Arquitectura, personas y conocimiento.')}
+        {t('¿Quieres formar parte de Living Research?')}
       </h2>
-      <p class="mt-8 max-w-lg text-lg leading-relaxed text-muted">
-        {t('La conversación genera conocimiento, y el conocimiento nos acerca a respuestas arquitectónicas que pueden hacerse realidad.')}
+      <p class="mt-8 max-w-lg leading-relaxed text-muted">
+        {t('Un espacio para conectar personas que comparten inquietudes sobre cómo vivir y quieren explorar nuevas posibilidades. Organizamos encuentros, compartimos investigaciones y detectamos intereses comunes.')}
       </p>
+      <div class="mt-8">
+        <ResearchLink href="#research-participate" label={t('Quiero formar parte')} />
+      </div>
     </div>
   </div>
 </section>

@@ -23,9 +23,9 @@ const category = getProjectCategoryLabel(project.category, Astro.currentLocale ?
       class="aspect-5/3 w-full bg-surface object-cover" /> : <MediaPlaceholder label={title} />}
     <h3 class="mt-3 text-base font-light break-words group-hover:text-brand">{title}</h3>
   </a>
-  {(category || project.year) && <dl class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
-    {category && <div class="min-w-0 break-words"><dt class="sr-only">{t('Categoría')}</dt><dd>{category}</dd></div>}
+  {(category || project.year) && <dl class="mt-1 flex flex-col gap-y-1 text-sm text-muted">
     {project.year && <div class="min-w-0 break-words"><dt class="sr-only">{t('Año')}</dt><dd>{project.year}</dd></div>}
+    {category && <div class="min-w-0 break-words"><dt class="sr-only">{t('Categoría')}</dt><dd>{category}</dd></div>}
   </dl>}
   {text.source === 'missing' && <p class="mt-2 text-sm text-muted">{t('Contenido en español pendiente.')}</p>}
 </article>

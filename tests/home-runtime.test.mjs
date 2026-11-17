@@ -105,6 +105,12 @@ test('Home HTTP selects latest bigint IDs, refreshes without rebuilding and pres
     }
     assert.match(first.html, /Residencial/);
     assert.match(first.html, /2026/);
+    // Mockup line structure: title, then year, then category; no location placeholder or dangling separator.
+    const latestCard = first.html.match(/<article\b[\s\S]*?<\/article>/)?.[0];
+    assert.ok(latestCard);
+    assert.ok(latestCard.indexOf('<dd>2026</dd>') > latestCard.indexOf('</h3>'));
+    assert.ok(latestCard.indexOf('<dd>2026</dd>') < latestCard.indexOf('<dd>Residencial</dd>'));
+    assert.doesNotMatch(latestCard, /·/);
     assert.doesNotMatch(first.html, /private-detail|javascript:|Casa Aneto|Sant Vicenç|Acacias/);
     await assert.rejects(readFile(join(build.root, 'dist/client/index.html')), { code: 'ENOENT' });
     await t.test('API retains every project in ascending order', async () => {

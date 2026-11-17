@@ -1,5 +1,7 @@
 ---
+import ContactIcon from '@/components/contact/ContactIcon.astro';
 import BrandMark from '@/components/ui/BrandMark.astro';
+import { studioContact } from '@/config/contact';
 import { navigationFor } from '@/data/navigation';
 import { clientLocale, localize } from '@/data/localized/locale';
 import { shellCatalan } from '@/data/localized/shell';
@@ -7,11 +9,23 @@ import { pagePath } from '@/lib/localized-routes';
 const locale = clientLocale(Astro.currentLocale);
 const navigation = navigationFor(locale);
 const t = localize(locale, shellCatalan);
+const link = 'inline-flex min-h-11 items-center hover:text-brand';
 ---
-<footer class="border-t border-line bg-surface py-12">
+<footer class="border-t border-line bg-canvas py-12">
   <div class="page-width grid gap-10 md:grid-cols-3">
     <div><a href={pagePath('home', locale)} aria-label={t('e estudio — Inicio')}><BrandMark compact /></a><p class="mt-8 text-xs text-muted">© e estudio {new Date().getFullYear()}</p></div>
     <nav aria-label={t('Navegación del pie')}><ul class="space-y-2 text-sm">{navigation.map(({ href, label }) => <li><a href={href}>{label}</a></li>)}</ul></nav>
-    <div class="text-sm text-muted"><p>Cardedeu, Barcelona</p><p class="mt-6">{t('Vista previa de cliente.')}</p><p class="mt-2 text-xs">{t('Tipografía y algunas imágenes provisionales.')}<br />{t('Los formularios no envían información.')}</p></div>
+    <address class="text-sm not-italic text-muted">
+      <ul>
+        <li><a class:list={[link, 'break-all']} href={`mailto:${studioContact.email}`}>{studioContact.email}</a></li>
+        <li><a class={link} href={studioContact.phoneHref}>{studioContact.phoneLabel}</a></li>
+        <li class="flex min-h-11 items-center">{studioContact.city}</li>
+      </ul>
+      <a class="mt-2 inline-flex min-h-11 min-w-11 items-center hover:text-brand" href={studioContact.instagramUrl} aria-label={`Instagram ${studioContact.instagramHandle}`}><ContactIcon name="instagram" /></a>
+      {/* Pending real URLs/pages, so intentionally not rendered yet: LinkedIn, the legal links
+          (Aviso legal | Privacidad | Cookies) and the privacy acceptance line. Never use placeholder hrefs. */}
+    </address>
   </div>
+  {/* Preview-only notices: remove together with the other test-version texts at launch. */}
+  <div class="page-width mt-10 border-t border-line pt-6 text-sm text-muted"><p>{t('Vista previa de cliente.')}</p><p class="mt-2 text-xs">{t('Tipografía y algunas imágenes provisionales.')}<br />{t('Los formularios no envían información.')}</p></div>
 </footer>

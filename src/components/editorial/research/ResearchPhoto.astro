@@ -7,9 +7,6 @@ const photos = {
   coliving: { width: 165, height: 145, alt: 'Una mesa compartida en un espacio doméstico abierto y luminoso.' },
   'intergenerational-community': { width: 165, height: 145, alt: 'Personas de distintas edades conversando en un jardín residencial.' },
   'other-living-models': { width: 165, height: 145, alt: 'Un espacio común con mesas, plantas y grandes ventanas.' },
-  'research-older-man-landscape': { width: 210, height: 105, alt: 'Un hombre de pelo blanco contempla el paisaje desde una terraza.' },
-  'research-young-man-city': { width: 213, height: 105, alt: 'Un joven observa la ciudad desde un mirador.' },
-  'research-house': { width: 208, height: 105, alt: 'Una casa de piedra rodeada de vegetación.' },
   'meeting-banner': { width: 743, height: 90, alt: 'Una conversación alrededor de una mesa con cuadernos y documentos.' },
   'outdoor-community': { width: 347, height: 177, alt: 'Un grupo conversa en círculo al aire libre junto a una casa.' },
   'sunset-clean-detail-crop': { width: 280, height: 199, alt: 'El sol se pone tras las montañas y los árboles.' },
@@ -18,10 +15,18 @@ const photos = {
 interface Props {
   name: keyof typeof photos;
   eager?: boolean;
+  /** `band` fills a band edge to edge at a fixed height; `fill` does so on mobile and fills its sized parent from `md`; `backdrop` fills its positioned parent. Both crop instead of distorting. */
+  fit?: 'natural' | 'band' | 'fill' | 'backdrop';
   class?: string;
 }
-const { name, eager = false, class: className } = Astro.props;
+const { name, eager = false, fit = 'natural', class: className } = Astro.props;
 const photo = photos[name];
+const fits = {
+  natural: 'h-auto',
+  band: 'h-72 object-cover md:h-96',
+  fill: 'h-72 object-cover md:h-full',
+  backdrop: 'absolute inset-0 -z-10 h-full object-cover',
+};
 ---
 <img
   src={`/living-research/${name}.png`}
@@ -30,5 +35,5 @@ const photo = photos[name];
   loading={eager ? 'eager' : 'lazy'}
   decoding="async"
   fetchpriority={eager ? 'high' : undefined}
-  class:list={['block h-auto w-full', className]}
+  class:list={['block w-full', fits[fit], className]}
 />

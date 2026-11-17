@@ -1,0 +1,15 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  /** Light text for the dark sunset band. */
+  onDark?: boolean;
+}
+const { href, label, onDark = false } = Astro.props;
+---
+<a
+  href={href}
+  class:list={['inline-flex items-center gap-4 text-sm', onDark ? 'text-on-brand focus-visible:outline-on-brand' : 'text-ink hover:text-brand']}
+>
+  <span class="border-b border-current pb-1">{label}</span><span aria-hidden="true">⟶</span>
+</a>

@@ -1,27 +1,36 @@
 ---
+import ResearchLink from '@/components/editorial/research/ResearchLink.astro';
 import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
 import { clientLocale, localize } from '@/data/localized/locale';
 import { researchCatalan } from '@/data/localized/research';
 import { pagePath } from '@/lib/localized-routes';
 const locale = clientLocale(Astro.currentLocale);
 const t = localize(locale, researchCatalan);
+const contact = pagePath('contact', locale);
 ---
 
-<!-- Keep this partial sunset beside the copy rather than stretching it into a full backdrop. -->
-<section class="bg-ink text-on-brand" aria-labelledby="research-contact">
-  <div class="page-width grid items-center gap-10 py-12 md:grid-cols-2 md:gap-16 md:py-16">
-    <div>
-      <p class="eyebrow mb-6">{t('Empezamos a hablar')}</p>
-      <h2 id="research-contact" class="section-heading font-serif">
-        {t('Habitar empieza con una conversación.')}
-      </h2>
+<!-- Panoramic sunset band. The common footer is a separate element rendered after it. -->
+<section class="relative isolate overflow-hidden bg-ink text-on-brand" aria-labelledby="research-contact">
+  <ResearchPhoto name="sunset-clean-detail-crop" fit="backdrop" />
+  <div class="absolute inset-0 -z-10 bg-ink/60" aria-hidden="true"></div>
+  <div class="page-width py-16 md:py-20">
+    <p class="eyebrow title-rule on-dark mb-8">Living Research</p>
+    <h2 id="research-contact" class="section-heading max-w-2xl font-serif">
+      {t('Repensar la vivienda es también repensar cómo queremos vivir.')}
+    </h2>
+    <div class="mt-10 flex flex-col items-start gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
+      <ResearchLink href={contact} label={t('¿Cómo te gustaría vivir?')} onDark />
       <a
-        href={pagePath('contact', locale)}
-        class="mt-8 inline-flex items-center gap-12 border border-on-brand px-8 py-4 text-sm uppercase tracking-widest hover:bg-on-brand hover:text-ink focus-visible:outline-on-brand"
+        href={contact}
+        class="inline-flex items-center gap-12 border border-on-brand px-8 py-4 text-sm uppercase tracking-widest hover:bg-on-brand hover:text-ink focus-visible:outline-on-brand"
       >
         <span>{t('Contacto')}</span><span aria-hidden="true">⟶</span>
       </a>
     </div>
-    <ResearchPhoto name="sunset-clean-detail-crop" class="max-w-lg justify-self-center" />
   </div>
 </section>
+
+<style>
+  /* The shared rule uses the ink colour; on the dark band it needs the light one. */
+  .on-dark::after { border-top-color: var(--color-on-brand); opacity: .7; }
+</style>
