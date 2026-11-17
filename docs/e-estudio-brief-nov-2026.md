@@ -13,7 +13,6 @@ e estudio sent an adjustment brief on 13 November 2026. The task record is [odd/
 - **Living Research:** see [editorial pages](e-estudio-editorial.md). The changes are:
   - the hero has no button;
   - each model has an explanation (draft text);
-  - «Investiguemos juntos» with LR01–LR03;
   - the community call to action;
   - a «Cuéntanos qué te interesa» form that is a demo and sends nothing;
   - the sunset closing band.
@@ -64,12 +63,12 @@ Kept deliberately, because the brief or the facts require it:
 | --- | --- |
 | Logos | Final vector files for e estudio (monogram plus «e estudio / ARQUITECTURA RESIDENCIAL») and e living. |
 | Fonts | Confirm the families and supply the font files and licences. |
-| Mockups | Received and applied. Confirm the illegible last sentence of the LR01 description. |
+| Mockups | Received and applied. The «Investiguemos juntos» section was later removed because surveys and statistics are outside the budget (2026-11-17). |
 | Destinations | URLs for «Saber más» (habitar, promover), «Explorar modelos residenciales» and LinkedIn. |
 | Accent contrast | #A89F92 on white is about 2.6:1, which is too low for text. Confirm whether ocre text may use the darker accessible tone. |
 | Project data | Location, type of intervention, area, status and the four-moment narrative (Persona/Deseo, Proyecto, Obra, Vida) are not in the Mocklab public data. They need new fields in the external service, plus real project selection and permissions. |
 | e living | A real destination or an approved provisional page. Until then the Services link goes to Contact. |
-| Living Research | Validate the model explanation drafts. Supply the LR01–LR03 dates, descriptions and links, and higher-resolution hero and sunset images. |
+| Living Research | Validate the model explanation drafts, and supply higher-resolution hero and sunset images. |
 | Real forms | Recipient address, sending provider, antispam, consent and privacy text for Contact and Living Research. Both forms stay demos until then. |
 | Legal and cookies | Legal notice, privacy and cookie texts, plus the footer legal links that depend on them. |
 | Contact data | e estudio to re-verify address, phone, email, Instagram and hours. |

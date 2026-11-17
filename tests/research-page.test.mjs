@@ -126,25 +126,12 @@ for (const [locale, c] of Object.entries(copy)) {
     }
   });
 
-  test(`${locale}: Investiguemos juntos shows LR 01-03 with description, meeting and a link to the form`, () => {
-    assert.ok(!html.includes(c.old), `${c.old} must be gone`);
-    assert.ok(!/Este año queremos conversar|Aquest any volem conversar/.test(html));
-    const questions = section(html, 'research-questions');
-    assert.deepEqual(headings(questions, 'h2'), [c.together]);
-    assert.ok(text(questions).includes(c.cadence));
-    const cards = [...questions.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)].map(([, card]) => card);
-    assert.equal(cards.length, 3);
-    for (const [index, card] of cards.entries()) {
-      assert.ok(text(card).startsWith(`LR 0${index + 1}`), `LR 0${index + 1} prefixes the question`);
-      assert.equal(headings(card, 'h3')[0], c.questions[index]);
-      assert.deepEqual([...card.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)].map(([, p]) => text(p)),
-        [`LR 0${index + 1}`, c.descriptions[index], c.meetings[index]]);
-      assert.match(card, /<img\b[^>]*src="\/living-research\//);
-      hasLink(card, '#research-participate', c.join);
+  test(`${locale}: Investiguemos juntos is removed (no surveys or statistics in budget)`, () => {
+    for (const absent of [c.together, c.old, c.cadence, c.join, ...c.questions, ...c.meetings]) {
+      assert.ok(!html.includes(absent), `${absent} must be gone`);
     }
-    assert.doesNotMatch(questions, /<time\b/);
-    assert.ok(!text(questions).includes('misma manera') && !text(questions).includes('mateixa manera'),
-      'The illegible LR01 sentence stays omitted');
+    assert.doesNotMatch(html, /id="research-questions"|LR 0[1-3]/);
+    assert.ok(!/Este año queremos conversar|Aquest any volem conversar/.test(html));
   });
 
   test(`${locale}: method keeps its steps with descriptions and the community links to the form`, () => {
@@ -218,13 +205,12 @@ for (const [locale, c] of Object.entries(copy)) {
   });
 }
 
-test('research keeps its eleven native photographs in editorial order with truthful dimensions', async () => {
+test('research keeps its eight native photographs in editorial order with truthful dimensions', async () => {
   const expected = [
     ['hero-photo-clean-crop', 343, 328],
     ['cohousing', 164, 145], ['coliving', 165, 145],
     ['intergenerational-community', 165, 145], ['other-living-models', 165, 145],
-    ['research-older-man-landscape', 210, 105], ['research-young-man-city', 213, 105],
-    ['research-house', 208, 105], ['meeting-banner', 743, 90],
+    ['meeting-banner', 743, 90],
     ['outdoor-community', 347, 177], ['sunset-clean-detail-crop', 280, 199],
   ];
   for (const html of [es, ca]) {

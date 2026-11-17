@@ -43,7 +43,8 @@ Shared: eyebrows and page titles carry a short fine rule below them (use the glo
 - [x] T6 Home, Studio, Projects list and Services mockup alignment — S16-S19 — writer — 33fa84a
 - [x] T7 Living Research mockup alignment — S20 — writer — 6b8daeb
 - [x] T8 Contact and footer mockup alignment — S21 — writer — 6e6b5a8
-- [x] T9 Validate, browser screenshots, docs and close — inline — docs commit
+- [x] T9 Validate, browser screenshots, docs and close — inline — 1a9dc46
+- [x] T10 Remove «Investiguemos juntos» from Living Research — L8 — inline — commit below
 
 ## Log
 
@@ -53,4 +54,5 @@ Shared: eyebrows and page titles carry a short fine rule below them (use the glo
 - L5 Evidence: `corepack pnpm run validate` 270/270 pass, astro check 0 errors. Headless Chrome desktop screenshots of Studio and Living Research looked correct; the headless mobile capture was not a reliable 390 px viewport, so mobile review stays pending. Slice note: commit 0787909 exceeded ~400 lines (Research restructure plus its tests) as one cohesive unit.
 - L6 User (2026-11-17): "te paso las maquetas que el cliente ha pasado: [Image#1] [Image#2] [Image#3] [Image#4] [Image#5] [Image#6]" — stored as `docs/mockups/2026-11/` (home, studio, projects-list-detail, services, living-research, contact). Specs S16-S21 transcribe them. The mockups show a Contact serif heading style, so the earlier T4 change to sans headings is reverted by T8.
 - L7 Evidence: `corepack pnpm run validate` 280/280 pass, astro check 0 errors. Desktop headless screenshots of all six pages compared with the mockups by a read-only reviewer; fixed LR card image ratio and the Contact title break. Mobile/tablet review still pending. Mockups excluded from Git via `.git/info/exclude`.
+- L8 User (2026-11-17): "en living-research quita la sección "investiguemos juntos" ya que no entra en el presupuesto hacer un módulo de estadísticaso encuestras" — supersedes S11 and the LR part of S20; the section, its data, CA copy and photo references are removed (T10).
 - L4 Pending human input (not executable here): vector logos for e estudio and e living; Cormorant/Montserrat font files and licences; mockups for exact ocre fragments, sizes and image ratios; location, intervention, area, status and four-moment narrative fields for projects (external Mocklab service); e living destination or provisional page; Research model explanations, LR dates, descriptions and links; real form sending (provider, recipient, antispam, privacy/consent text); legal pages and cookies; verified contact data; final team/client lists and logo permissions; domain/SEO/hosting; real-browser responsive review sign-off.

@@ -19,21 +19,6 @@ export const researchCatalan = {
     'Entorns residencials on conviuen persones de diferents edats i es afavoreix el suport mutu entre generacions.',
   'Otras fórmulas de vivienda que combinan espacio privado y compartido de maneras distintas a los modelos más habituales.':
     'Altres fórmules d’habitatge que combinen espai privat i compartit de maneres diferents dels models més habituals.',
-  'Investiguemos juntos': 'Investiguem junts',
-  '2 - 3 encuentros al año para investigar juntos.': '2 - 3 trobades l’any per investigar junts.',
-  '¿Cómo queremos vivir cuando seamos mayores?': 'Com volem viure quan siguem grans?',
-  '¿Cómo vivirán nuestros hijos?': 'Com viuran els nostres fills?',
-  '¿Qué posibilidades ofrecen los espacios que ya tenemos?': 'Quines possibilitats ofereixen els espais que ja tenim?',
-  'Vivimos más años y queremos mantener nuestra autonomía durante más tiempo. ¿Qué necesitamos para seguir viviendo bien?':
-    'Vivim més anys i volem mantenir la nostra autonomia durant més temps. Què necessitem per continuar vivint bé?',
-  'El acceso a la vivienda está transformando la etapa de la juventud. Queremos investigar qué modelos residenciales pueden responder a esta nueva realidad.':
-    'L’accés a l’habitatge està transformant l’etapa de la joventut. Volem investigar quins models residencials poden respondre a aquesta nova realitat.',
-  'Masías, grandes casas unifamiliares, edificios industriales, hoteles… ¿Podrían albergar nuevas formas de convivencia sin perder su identidad?':
-    'Masies, grans cases unifamiliars, edificis industrials, hotels… Podrien acollir noves formes de convivència sense perdre la seva identitat?',
-  'Encuentro · otoño 2026': 'Trobada · tardor 2026',
-  'Encuentro · invierno 2026': 'Trobada · hivern 2026',
-  'Encuentro · primavera 2027': 'Trobada · primavera 2027',
-  'Me interesa participar': 'M’interessa participar',
   'Preguntar': 'Preguntar',
   'Conversar': 'Conversar',
   'Investigar': 'Investigar',
@@ -75,9 +60,6 @@ export const researchPhotoCatalan = {
   coliving: 'Una taula compartida en un espai domèstic obert i lluminós.',
   'intergenerational-community': 'Persones de diferents edats conversant en un jardí residencial.',
   'other-living-models': 'Un espai comú amb taules, plantes i grans finestres.',
-  'research-older-man-landscape': 'Un home de cabells blancs contempla el paisatge des d’una terrassa.',
-  'research-young-man-city': 'Un jove observa la ciutat des d’un mirador.',
-  'research-house': 'Una casa de pedra envoltada de vegetació.',
   'meeting-banner': 'Una conversa al voltant d’una taula amb quaderns i documents.',
   'outdoor-community': 'Un grup conversa en cercle a l’aire lliure al costat d’una casa.',
   'sunset-clean-detail-crop': 'El sol es pon darrere les muntanyes i els arbres.',
