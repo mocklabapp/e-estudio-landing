@@ -33,8 +33,8 @@ async function compileComponent(path) {
       : resolve(dirname(path), match[1]);
     code = code.replace(match[0], `from ${JSON.stringify(await compileComponent(dependency))}`);
   }
-  // Resolve the component's typed local copy modules for Node's in-memory renderer.
-  code = code.replace(/from\s+["'](@\/data\/localized\/[^"']+)["']/g, (_match, specifier) =>
+  // Resolve the component's typed local copy/config modules for Node's in-memory renderer.
+  code = code.replace(/from\s+["'](@\/(?:data\/localized|config)\/[^"']+)["']/g, (_match, specifier) =>
     `from ${JSON.stringify(pathToFileURL(resolve(root, 'src', specifier.slice(2) + '.ts')).href)}`);
   return `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`;
 }
@@ -188,8 +188,12 @@ class Control {
 }
 
 test('enhancement validates, announces and resets safely without network, storage or navigation', async () => {
-  const source = await readFile(resolve(root, 'src/lib/contact-preview.ts'), 'utf8');
-  const code = stripTypeScriptTypes(source).replace(/^export /gm, '');
+  // The browser bundler resolves the shared form-preview modules; here they are concatenated.
+  const paths = ['form-preview/validation.ts', 'form-preview/enhance.ts', 'contact-preview.ts'];
+  const sources = await Promise.all(paths.map(path => readFile(resolve(root, 'src/lib', path), 'utf8')));
+  const source = sources.join('\n');
+  const code = sources.map(text => stripTypeScriptTypes(text)).join('\n')
+    .replace(/^import [^;]*;\n/gm, '').replace(/^export /gm, '');
   const sandbox = Object.create(null);
   for (const name of ['fetch', 'XMLHttpRequest', 'WebSocket', 'localStorage', 'sessionStorage', 'navigator', 'location', 'document', 'console']) {
     Object.defineProperty(sandbox, name, { get() { assert.fail(`Unexpected side effect through ${name}`); } });

@@ -18,10 +18,17 @@ const photos = {
 interface Props {
   name: keyof typeof photos;
   eager?: boolean;
+  /** `band` fills a band edge to edge at a fixed height; `backdrop` fills its positioned parent. Both crop instead of distorting. */
+  fit?: 'natural' | 'band' | 'backdrop';
   class?: string;
 }
-const { name, eager = false, class: className } = Astro.props;
+const { name, eager = false, fit = 'natural', class: className } = Astro.props;
 const photo = photos[name];
+const fits = {
+  natural: 'h-auto',
+  band: 'h-72 object-cover md:h-96',
+  backdrop: 'absolute inset-0 -z-10 h-full object-cover',
+};
 ---
 <img
   src={`/living-research/${name}.png`}
@@ -30,5 +37,5 @@ const photo = photos[name];
   loading={eager ? 'eager' : 'lazy'}
   decoding="async"
   fetchpriority={eager ? 'high' : undefined}
-  class:list={['block h-auto w-full', className]}
+  class:list={['block w-full', fits[fit], className]}
 />

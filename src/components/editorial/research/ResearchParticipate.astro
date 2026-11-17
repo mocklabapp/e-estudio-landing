@@ -1,0 +1,64 @@
+---
+import { clientLocale, localize } from '@/data/localized/locale';
+import { researchCatalan } from '@/data/localized/research';
+const locale = clientLocale(Astro.currentLocale);
+const t = localize(locale, researchCatalan);
+---
+
+<!-- No-send, no-storage demo like Contact: real delivery needs an approved provider, recipient and privacy text. -->
+<section id="research-participate" class="page-width section-space" aria-labelledby="research-participate-title">
+  <div class="mx-auto max-w-2xl">
+    <h2 id="research-participate-title" class="section-heading mb-8 font-serif">{t('Cuéntanos qué te interesa')}</h2>
+    <div data-interest-preview data-locale={locale} role="form" aria-labelledby="research-participate-title" aria-describedby="interest-demo-notice">
+      <p id="interest-demo-notice" class="mb-4 text-sm text-muted">
+        {t('Formulario de demostración. No se envían ni guardan datos.')}
+      </p>
+      <p class="mb-8 text-sm text-muted">{t('Todos los campos son obligatorios. Usa datos de prueba.')}</p>
+      <div class="grid gap-7">
+        <div class="field">
+          <label for="interest-name">{t('Nombre')}</label>
+          <input id="interest-name" type="text" autocomplete="off" maxlength="120" required />
+        </div>
+        <div class="field">
+          <label for="interest-email">{t('Email')}</label>
+          <input id="interest-email" type="email" autocomplete="off" maxlength="160" required />
+        </div>
+        <div class="field">
+          <label for="interest-message">{t('Mensaje')}</label>
+          <textarea id="interest-message" rows="5" autocomplete="off" maxlength="3000" required></textarea>
+        </div>
+      </div>
+      <button id="interest-simulate" type="button" disabled class="mt-8 inline-flex min-h-12 items-center gap-8 border border-ink bg-ink text-on-brand px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50">
+        {t('Simular envío')} <span aria-hidden="true">↗</span>
+      </button>
+      <p id="interest-status" role="status" aria-live="polite" aria-atomic="true" class="mt-4 min-h-12 text-sm"></p>
+      <noscript>
+        <p class="mt-4 text-sm text-muted">{t('Activa JavaScript para probar la simulación. No se envían ni guardan datos.')}</p>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { enhanceInterestPreview } from '@/lib/interest-form';
+
+  document.querySelectorAll<HTMLElement>('[data-interest-preview]').forEach((root) => {
+    enhanceInterestPreview(root, root.dataset.locale);
+  });
+</script>
+
+<style>
+  .field { display: grid; gap: 0.75rem; }
+  label { font-size: 0.875rem; }
+  input, textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    border-radius: 0;
+  }
+  textarea { resize: vertical; }
+  [aria-invalid='true'] { border-bottom-color: var(--color-ink); border-bottom-width: 2px; }
+</style>

@@ -1,4 +1,5 @@
 ---
+import ArrowLink from '@/components/ui/ArrowLink.astro';
 import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
 import { researchMethod } from '@/data/editorial';
 import { localize } from '@/data/localized/locale';
@@ -34,11 +35,14 @@ const t = localize(Astro.currentLocale, researchCatalan);
     <ResearchPhoto name="outdoor-community" />
     <div>
       <h2 id="research-community" class="section-heading font-serif">
-        {t('Arquitectura, personas y conocimiento.')}
+        {t('¿Quieres formar parte de Living Research?')}
       </h2>
       <p class="mt-8 max-w-lg text-lg leading-relaxed text-muted">
         {t('La conversación genera conocimiento, y el conocimiento nos acerca a respuestas arquitectónicas que pueden hacerse realidad.')}
       </p>
+      <div class="mt-8">
+        <ArrowLink href="#research-participate" label={t('Cuéntanos qué te interesa')} outlined />
+      </div>
     </div>
   </div>
 </section>

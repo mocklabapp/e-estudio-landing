@@ -1,0 +1,23 @@
+---
+import ResearchPhoto from '@/components/editorial/research/ResearchPhoto.astro';
+import { localize } from '@/data/localized/locale';
+import { researchCatalan } from '@/data/localized/research';
+const t = localize(Astro.currentLocale, researchCatalan);
+---
+
+<section aria-labelledby="research-hero">
+  <div class="page-width py-12 md:py-20">
+    <p class="eyebrow mb-8">Living Research</p>
+    <h1 id="research-hero" class="max-w-4xl font-serif text-display font-light leading-tight">
+      {t('La forma de habitar está cambiando.')}
+    </h1>
+    <p class="mt-8 max-w-xl text-lg leading-relaxed">
+      {t('Vivimos más años. Las familias ya no responden a un modelo único. Cada vez más personas viven solas. Trabajamos y nos relacionamos de otra manera.')}
+    </p>
+    <p class="mt-6 max-w-xl leading-relaxed text-muted">
+      {t('En e estudio investigamos nuevas formas de habitar, conectando arquitectura, personas y conocimiento para explorar modelos de vivienda que respondan mejor a las necesidades actuales.')}
+    </p>
+  </div>
+  <!-- The supplied crop is small (343 × 328): it is cropped, not enlarged in height, across the band. -->
+  <ResearchPhoto name="hero-photo-clean-crop" eager fit="band" />
+</section>

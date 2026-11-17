@@ -139,48 +139,13 @@ test('each service starts with media before its offer and e living remains a sep
   hasLink(living, '/contacto/', 'Preguntar por e living');
 });
 
-test('research is an editorial page with models, exact questions and a five-step method', () => {
-  for (const phrase of ['La forma de habitar está cambiando.', 'Vivimos más años.',
-    'Cohousing', 'Coliving', 'Comunidades intergeneracionales', 'Otras formas de habitar',
-    'Preguntar', 'Conversar', 'Investigar', 'Explorar', 'Hacer posible',
-    'Cada investigación nace de una pregunta abierta y se construye en común.']) {
-    assert.ok(text(research).includes(phrase), `Missing ${phrase}`);
-  }
-  const questions = [...research.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)]
-    .map(([, heading]) => text(heading)).filter((heading) => heading.includes('¿'));
-  assert.deepEqual(questions, [
-    '¿Cómo queremos vivir cuando seamos mayores?',
-    '¿Cómo vivirán nuestros hijos?',
-    '¿Qué posibilidades ofrecen los espacios que ya tenemos?',
-  ]);
-  const method = section(research, 'research-method');
-  assert.ok(text(method).includes('De la conversación a la realidad.'));
-  assert.doesNotMatch(research, /<time\b|inscrib|votaci|participa|evento confirmado/i);
-});
-
-test('research discovery pairs each housing model with media before its label', () => {
-  const models = section(research, 'research-models');
-  assert.ok(text(models).includes('Descubrir'));
-  assert.ok(text(models).includes('¿Conoces todas las formas en las que podemos vivir?'));
-  const cards = [...models.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map(([, card]) => card);
-  assert.equal(cards.length, 4);
-  const labels = ['Cohousing', 'Coliving', 'Comunidades intergeneracionales', 'Otras formas de habitar'];
-  for (const [index, card] of cards.entries()) {
-    assert.ok(card.indexOf('<img ') >= 0 && card.indexOf('<img ') < card.indexOf('<h3'),
-      'A supplied photograph must precede the model label');
-    const heading = card.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/);
-    assert.ok(heading);
-    assert.equal(text(heading[1]), labels[index]);
-    assert.match(card, new RegExp(`src="/living-research/${[
-      'cohousing', 'coliving', 'intergenerational-community', 'other-living-models',
-    ][index]}\\.png"`));
-  }
-});
-
 test('all entries remain passive content with one heading and contact navigation', () => {
   for (const html of [home, studio, services, research]) {
     assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
-    assert.doesNotMatch(html, /<(?:main|header|footer|form|input|button|script)\b/);
+    // Research now holds the no-send interest demo form; its checks live in research-page.test.mjs.
+    assert.doesNotMatch(html, html === research
+      ? /<(?:main|header|footer|form)\b/
+      : /<(?:main|header|footer|form|input|button|script)\b/);
     hasLink(html, '/contacto/', 'Contacto');
     assert.doesNotMatch(html, /fonts\.(?:googleapis|gstatic)\.com/);
     if (html === services) {
@@ -225,49 +190,6 @@ test('studio delivers all thirteen supplied crops in order with native dimension
   assert.equal([...section(studio, 'studio-collaborators').matchAll(/<img\b/g)].length, 5);
   assert.match(section(studio, 'studio-space'), /studio-meeting-room\.png/);
   hasLink(section(studio, 'studio-contact'), '/contacto/', 'Contacto');
-});
-
-test('research serves eleven clean native photographs with truthful dimensions and loading', async () => {
-  const expected = [
-    ['hero-photo-clean-crop', 343, 328],
-    ['cohousing', 164, 145], ['coliving', 165, 145],
-    ['intergenerational-community', 165, 145], ['other-living-models', 165, 145],
-    ['research-older-man-landscape', 210, 105], ['research-young-man-city', 213, 105],
-    ['research-house', 208, 105], ['meeting-banner', 743, 90],
-    ['outdoor-community', 347, 177], ['sunset-clean-detail-crop', 280, 199],
-  ];
-  const images = [...research.matchAll(/<img\b[^>]*>/g)].map(([image]) => image);
-  assert.equal(images.length, expected.length);
-  for (const [index, [name, width, height]] of expected.entries()) {
-    const image = images[index];
-    const src = `/living-research/${name}.png`;
-    assert.ok(image.includes(`src="${src}"`), `Missing ordered photo ${src}`);
-    assert.ok(image.includes(`width="${width}"`) && image.includes(`height="${height}"`));
-    assert.match(image, /alt="[^"]+"/);
-    assert.ok(image.includes(`loading="${index === 0 ? 'eager' : 'lazy'}"`));
-    const bytes = await readFile(join(build.root, 'dist/client', src));
-    assert.equal(bytes.toString('hex', 0, 8), '89504e470d0a1a0a');
-    assert.equal(bytes.readUInt32BE(16), width);
-    assert.equal(bytes.readUInt32BE(20), height);
-  }
-  assert.doesNotMatch(research, /Imagen pendiente|with-overlay|<time\b|inscrib|votaci|participa|registro/i);
-});
-
-test('research keeps questions, method, community and sunset contact in editorial order', () => {
-  const questions = section(research, 'research-questions');
-  assert.equal([...questions.matchAll(/<img\b/g)].length, 3);
-  const method = section(research, 'research-method');
-  const steps = [...method.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map(([, h]) => text(h));
-  assert.deepEqual(steps, ['Preguntar', 'Conversar', 'Investigar', 'Explorar', 'Hacer posible']);
-  const community = section(research, 'research-community');
-  assert.match(community, /outdoor-community\.png/);
-  assert.ok(text(community).includes('Arquitectura, personas y conocimiento'));
-  const closing = section(research, 'research-contact');
-  assert.match(closing, /sunset-clean-detail-crop\.png/);
-  hasLink(closing, '/contacto/', 'Contacto');
-  assert.ok(research.indexOf('meeting-banner.png') < research.indexOf('id="research-method"'));
-  assert.ok(research.indexOf('id="research-method"') < research.indexOf('outdoor-community.png'));
-  assert.ok(research.indexOf('outdoor-community.png') < research.indexOf('sunset-clean-detail-crop.png'));
 });
 
 test('editorial links use approved routes or existing local anchors', () => {
