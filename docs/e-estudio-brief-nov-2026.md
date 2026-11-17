@@ -18,13 +18,54 @@ e estudio sent an adjustment brief on 13 November 2026. The task record is [odd/
   - a «Cuéntanos qué te interesa» form that is a demo and sends nothing;
   - the sunset closing band.
 
+## Mockup alignment (2026-11-17)
+
+The client mockups were received and kept locally in `docs/mockups/2026-11/`. That folder is excluded from Git through `.git/info/exclude`; whether to commit client design files is a human decision.
+
+Applied from the mockups:
+- **Shared:** short rules under eyebrows and titles (`title-rule`).
+- **Home:**
+  - centred hero;
+  - two cards separated by a vertical line;
+  - featured projects with a «Ver todos los proyectos» link;
+  - closing band with only «conversación.» in the accent colour.
+- **Studio:** «Equipo».
+- **Projects list:** ruled title and the «Cada proyecto, una forma de habitar.» band.
+- **Services:**
+  - the habitar/promover layout and list;
+  - the e living block;
+  - a band with only «Vivir» in the accent colour.
+- **Living Research:**
+  - the hero photo fades in on the right;
+  - LR texts and approximate meeting dates;
+  - method step descriptions in a 3 + 2 grid;
+  - community text;
+  - form intro;
+  - closing eyebrow and links.
+- **Contact:**
+  - serif headings;
+  - form intro, «*» and placeholders;
+  - icon list and «Horario» column;
+  - a vertical line between form and location.
+- **Footer:** logo, nav, email/phone/city and an Instagram icon.
+- **Header:** three-line mobile menu icon.
+
+Kept deliberately, because the brief or the facts require it:
+- the voting block is removed;
+- «Este año queremos conversar sobre…» and «Conoce el proyecto» are omitted;
+- demo forms keep honest «Simular envío» labels;
+- links without an approved destination point to Contact (`Saber más`, e living) or are omitted («Explorar modelos residenciales», LinkedIn, legal links, privacy line);
+- project cards show year and category until location and intervention fields exist;
+- the project detail page is unchanged until its data exists.
+
 ## Waiting on client or human input
 
 | Item | Needed |
 | --- | --- |
 | Logos | Final vector files for e estudio (monogram plus «e estudio / ARQUITECTURA RESIDENCIAL») and e living. |
 | Fonts | Confirm the families and supply the font files and licences. |
-| Mockups | The final mockups, to match exact ocre fragments (Home: «espacios pensados para vivir.», «Habitar empieza con una conversación.»), sizes and image ratios. |
+| Mockups | Received and applied. Confirm the illegible last sentence of the LR01 description. |
+| Destinations | URLs for «Saber más» (habitar, promover), «Explorar modelos residenciales» and LinkedIn. |
 | Accent contrast | #A89F92 on white is about 2.6:1, which is too low for text. Confirm whether ocre text may use the darker accessible tone. |
 | Project data | Location, type of intervention, area, status and the four-moment narrative (Persona/Deseo, Proyecto, Obra, Vida) are not in the Mocklab public data. They need new fields in the external service, plus real project selection and permissions. |
 | e living | A real destination or an approved provisional page. Until then the Services link goes to Contact. |
